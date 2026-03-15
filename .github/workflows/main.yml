@@ -27,10 +27,9 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Run watcher
-        env:
-          EMAIL_USER: ${{ secrets.EMAIL_USER }}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          TEST_EMAIL: "1"
+      env:
+  EMAIL_USER: ${{ secrets.EMAIL_USER }}
+  EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         run: python watcher.py
 
       - name: Commit seen_parts.json if changed
