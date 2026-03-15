@@ -3,7 +3,7 @@ name: Engine Watcher
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8,20 * * *'
+    - cron: '0 4,12 * * *'
 
 permissions:
   contents: write
