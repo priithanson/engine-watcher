@@ -1,19 +1,20 @@
 name: Engine Watcher
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '0 8,20 * * *'  # 08:00 ja 20:00 UTC
-  workflow_dispatch:       # võimaldab käsitsi käivitada
+    - cron: '0 8,20 * * *'
 
 jobs:
   check-engines:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -21,4 +22,7 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Run watcher
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         run: python watcher.py
