@@ -13,23 +13,33 @@ def main():
 
         links = page.locator("a")
         count = links.count()
-        print("TOTAL LINKS:", count)
 
-        matches = 0
+        results = []
+        seen = set()
 
         for i in range(count):
             text = links.nth(i).inner_text().strip()
             href = links.nth(i).get_attribute("href") or ""
 
-            if "W" in text or "Motor Diesel" in text or "motor" in href.lower():
-                print(f"LINK {i}:")
-                print("TEXT:", text)
-                print("HREF:", href)
-                print("-----")
-                matches += 1
+            is_product = (
+                text.startswith("W")
+                and "Motor Diesel" in text
+                and "/Motor/Motor-Diesel/_/ID-" in href
+            )
 
-                if matches >= 30:
-                    break
+            if is_product:
+                full_url = "https://www.bildelsbasen.se" + href
+
+                if full_url not in seen:
+                    seen.add(full_url)
+                    results.append((text, full_url))
+
+        print("Found engines:", len(results))
+
+        for title, url in results[:10]:
+            print(title)
+            print(url)
+            print("-----")
 
         browser.close()
 
