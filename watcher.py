@@ -25,11 +25,12 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(URL, wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(8000)
 
-        links = page.locator("a")
+        search_page = browser.new_page()
+        search_page.goto(URL, wait_until="domcontentloaded", timeout=60000)
+        search_page.wait_for_timeout(8000)
+
+        links = search_page.locator("a")
         count = links.count()
 
         results = []
@@ -47,29 +48,42 @@ def main():
 
             if is_product:
                 full_url = "https://www.bildelsbasen.se" + href
-
                 if full_url not in seen:
                     seen.add(full_url)
                     results.append((text, full_url))
 
         print("Found engines:", len(results))
-        print("Checking first 5 detail pages for price...")
 
         detail_page = browser.new_page()
 
-        for title, url in results[:5]:
-            detail_page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            detail_page.wait_for_timeout(3000)
+        title, url = results[0]
+        print("Testing first result:")
+        print(title)
+        print(url)
 
-            body_text = detail_page.locator("body").inner_text()
-            price = extract_price(body_text)
+        detail_page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        detail_page.wait_for_timeout(5000)
 
-            print(title)
-            print("Price:", price)
-            print(url)
-            print("-----")
+        body_text = detail_page.locator("body").inner_text()
+        price = extract_price(body_text)
+
+        print("Detected price:", price)
+        print("PRICE-RELATED LINES START")
+
+        for line in body_text.splitlines():
+            clean = line.strip()
+            if clean and (
+                "SEK" in clean
+                or "Pris" in clean
+                or "moms" in clean.lower()
+                or "frakt" in clean.lower()
+            ):
+                print(clean)
+
+        print("PRICE-RELATED LINES END")
 
         detail_page.close()
+        search_page.close()
         browser.close()
 
 
