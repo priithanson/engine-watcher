@@ -11,20 +11,25 @@ def main():
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(8000)
 
-        print("PAGE TITLE:", page.title())
-        print("FINAL URL:", page.url)
-
         links = page.locator("a")
         count = links.count()
         print("TOTAL LINKS:", count)
 
-        for i in range(min(count, 40)):
+        matches = 0
+
+        for i in range(count):
             text = links.nth(i).inner_text().strip()
-            href = links.nth(i).get_attribute("href")
-            print(f"LINK {i}:")
-            print("TEXT:", text)
-            print("HREF:", href)
-            print("-----")
+            href = links.nth(i).get_attribute("href") or ""
+
+            if "W" in text or "Motor Diesel" in text or "motor" in href.lower():
+                print(f"LINK {i}:")
+                print("TEXT:", text)
+                print("HREF:", href)
+                print("-----")
+                matches += 1
+
+                if matches >= 30:
+                    break
 
         browser.close()
 
