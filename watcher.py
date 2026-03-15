@@ -1,10 +1,17 @@
 import json
+import os
 import re
+import smtplib
+from email.mime.text import MIMEText
 from pathlib import Path
+
 from playwright.sync_api import sync_playwright
 
 URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
 SEEN_FILE = "seen_parts.json"
+
+EMAIL_USER = os.environ.get("EMAIL_USER")
+EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
 
 def load_seen():
@@ -45,6 +52,65 @@ def extract_price(text):
                 except ValueError:
                     pass
     return None
+
+
+def format_price(price):
+    if price is None:
+        return "hind puudub"
+    return f"{price:.2f} SEK"
+
+
+def send_email(new_items, cheaper_items, price_added_items):
+    if not EMAIL_USER or not EMAIL_PASS:
+        print("Email secrets missing")
+        return
+
+    if not new_items and not cheaper_items and not price_added_items:
+        print("No email sent, no changes")
+        return
+
+    lines = []
+
+    if new_items:
+        lines.append("UUED KUULUTUSED")
+        lines.append("")
+        for title, price, url in new_items:
+            lines.append(title)
+            lines.append(f"Hind: {format_price(price)}")
+            lines.append(url)
+            lines.append("")
+
+    if cheaper_items:
+        lines.append("HINNALANGUSED")
+        lines.append("")
+        for title, old_price, new_price, url in cheaper_items:
+            lines.append(title)
+            lines.append(f"Vana hind: {format_price(old_price)}")
+            lines.append(f"Uus hind: {format_price(new_price)}")
+            lines.append(url)
+            lines.append("")
+
+    if price_added_items:
+        lines.append("HIND LISATI HILJEM")
+        lines.append("")
+        for title, new_price, url in price_added_items:
+            lines.append(title)
+            lines.append(f"Hind: {format_price(new_price)}")
+            lines.append(url)
+            lines.append("")
+
+    body = "\n".join(lines)
+
+    msg = MIMEText(body, _charset="utf-8")
+    msg["Subject"] = "Bildelsbasen R9M muutused"
+    msg["From"] = EMAIL_USER
+    msg["To"] = EMAIL_USER
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(EMAIL_USER, EMAIL_PASS)
+        server.send_message(msg)
+
+    print("Email sent")
 
 
 def main():
@@ -137,6 +203,7 @@ def main():
     print("Cheaper engines:", len(cheaper_items))
     print("Price added later:", len(price_added_items))
 
+    send_email(new_items, cheaper_items, price_added_items)
     save_seen(current_data)
 
 
