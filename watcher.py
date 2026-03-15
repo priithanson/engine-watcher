@@ -1,7 +1,31 @@
+import json
 import re
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
+SEEN_FILE = "seen_parts.json"
+
+
+def load_seen():
+    path = Path(SEEN_FILE)
+    if not path.exists():
+        return {}
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return {}
+    try:
+        data = json.loads(text)
+        return data if isinstance(data, dict) else {}
+    except json.JSONDecodeError:
+        return {}
+
+
+def save_seen(data):
+    Path(SEEN_FILE).write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
 
 
 def extract_price(text):
@@ -9,6 +33,9 @@ def extract_price(text):
 
     for line in lines:
         if "SEK" in line:
+            if line == "SWE / SE / SEK /":
+                continue
+
             m = re.search(r"([\d\s.,]+)\s*SEK", line)
             if m:
                 raw = m.group(1)
@@ -23,6 +50,8 @@ def extract_price(text):
 def main():
     print("Opening Bildelsbasen in browser...")
 
+    old_seen = load_seen()
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
 
@@ -34,7 +63,7 @@ def main():
         count = links.count()
 
         results = []
-        seen = set()
+        seen_urls = set()
 
         for i in range(count):
             text = links.nth(i).inner_text().strip()
@@ -48,43 +77,67 @@ def main():
 
             if is_product:
                 full_url = "https://www.bildelsbasen.se" + href
-                if full_url not in seen:
-                    seen.add(full_url)
+
+                if full_url not in seen_urls:
+                    seen_urls.add(full_url)
                     results.append((text, full_url))
 
         print("Found engines:", len(results))
 
         detail_page = browser.new_page()
+        current_data = {}
 
-        title, url = results[0]
-        print("Testing first result:")
-        print(title)
-        print(url)
+        for idx, (title, url) in enumerate(results, start=1):
+            print(f"Checking detail {idx}/{len(results)}")
 
-        detail_page.goto(url, wait_until="domcontentloaded", timeout=60000)
-        detail_page.wait_for_timeout(5000)
+            try:
+                detail_page.goto(url, wait_until="domcontentloaded", timeout=60000)
+                detail_page.wait_for_timeout(2500)
 
-        body_text = detail_page.locator("body").inner_text()
-        price = extract_price(body_text)
+                body_text = detail_page.locator("body").inner_text()
+                price = extract_price(body_text)
 
-        print("Detected price:", price)
-        print("PRICE-RELATED LINES START")
+                current_data[url] = {
+                    "title": title,
+                    "price": price
+                }
 
-        for line in body_text.splitlines():
-            clean = line.strip()
-            if clean and (
-                "SEK" in clean
-                or "Pris" in clean
-                or "moms" in clean.lower()
-                or "frakt" in clean.lower()
-            ):
-                print(clean)
-
-        print("PRICE-RELATED LINES END")
+            except Exception as e:
+                print("Detail page failed:", url)
+                print(str(e))
+                current_data[url] = {
+                    "title": title,
+                    "price": None
+                }
 
         detail_page.close()
         search_page.close()
         browser.close()
+
+    new_items = []
+    cheaper_items = []
+    price_added_items = []
+
+    for url, item in current_data.items():
+        old_item = old_seen.get(url)
+        new_price = item.get("price")
+
+        if old_item is None:
+            new_items.append((item["title"], new_price, url))
+            continue
+
+        old_price = old_item.get("price")
+
+        if old_price is None and new_price is not None:
+            price_added_items.append((item["title"], new_price, url))
+        elif old_price is not None and new_price is not None and new_price < old_price:
+            cheaper_items.append((item["title"], old_price, new_price, url))
+
+    print("New engines:", len(new_items))
+    print("Cheaper engines:", len(cheaper_items))
+    print("Price added later:", len(price_added_items))
+
+    save_seen(current_data)
 
 
 if __name__ == "__main__":
