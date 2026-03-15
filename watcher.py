@@ -1,5 +1,7 @@
 from playwright.sync_api import sync_playwright
 
+print("VERSION 2")
+
 URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
 
 def main():
