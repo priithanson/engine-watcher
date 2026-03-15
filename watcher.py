@@ -1,27 +1,36 @@
-name: Engine Watcher
+from playwright.sync_api import sync_playwright
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 8,20 * * *'
+print("VERSION 2")
 
-jobs:
-  check-engines:
-    runs-on: ubuntu-latest
+URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+def main():
+    print("Opening Bildelsbasen in browser...")
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
 
-      - name: Install dependencies
-        run: |
-          pip install playwright
-          playwright install --with-deps chromium
+        page = browser.new_page()
 
-      - name: Run watcher
-        run: python watcher.py
+        page.goto(URL, wait_until="networkidle", timeout=60000)
+
+        page.wait_for_timeout(5000)
+
+        links = page.locator("a[href*='/part/']")
+        count = links.count()
+
+        print("Found engines:", count)
+
+        for i in range(min(count, 10)):
+            title = links.nth(i).inner_text().strip()
+            href = links.nth(i).get_attribute("href")
+
+            if href and title:
+                print(title)
+                print("https://www.bildelsbasen.se" + href)
+                print("-----")
+
+        browser.close()
+
+if __name__ == "__main__":
+    main()
