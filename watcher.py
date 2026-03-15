@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 
 URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100"
 
-EMAIL_USER = os.environ["EMAIL_USER"]
-EMAIL_PASS = os.environ["EMAIL_PASS"]
+EMAIL_USER = os.environ.get("EMAIL_USER")
+EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
 
 def fetch_results():
@@ -30,6 +30,10 @@ def fetch_results():
 
 
 def send_email(results):
+    if not EMAIL_USER or not EMAIL_PASS:
+        print("EMAIL_USER või EMAIL_PASS puudub")
+        return
+
     if not results:
         body = "Ühtegi tulemust ei leitud."
     else:
@@ -47,12 +51,13 @@ def send_email(results):
         server.login(EMAIL_USER, EMAIL_PASS)
         server.send_message(msg)
 
+    print("Email sent")
+
 
 def main():
     results = fetch_results()
     print(f"Found {len(results)} results")
     send_email(results)
-    print("Test email sent")
 
 
 if __name__ == "__main__":
