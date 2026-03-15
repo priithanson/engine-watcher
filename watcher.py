@@ -14,14 +14,17 @@ def main():
         print("PAGE TITLE:", page.title())
         print("FINAL URL:", page.url)
 
-        body_text = page.locator("body").inner_text()
-        print("BODY START:")
-        print(body_text[:2000])
-        print("BODY END")
-
-        links = page.locator("a[href*='/part/']")
+        links = page.locator("a")
         count = links.count()
-        print("Found engines:", count)
+        print("TOTAL LINKS:", count)
+
+        for i in range(min(count, 40)):
+            text = links.nth(i).inner_text().strip()
+            href = links.nth(i).get_attribute("href")
+            print(f"LINK {i}:")
+            print("TEXT:", text)
+            print("HREF:", href)
+            print("-----")
 
         browser.close()
 
