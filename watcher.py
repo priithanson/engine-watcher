@@ -1,32 +1,27 @@
-raise Exception("SEE ON UUS WATCHER")
-from playwright.sync_api import sync_playwright
-print("VERSION 2")
-URL = "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
+name: Engine Watcher
 
-def main():
-    print("Opening Bildelsbasen in browser...")
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8,20 * * *'
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(URL, wait_until="networkidle", timeout=60000)
+jobs:
+  check-engines:
+    runs-on: ubuntu-latest
 
-        page.wait_for_timeout(5000)
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        links = page.locator("a[href*='/part/']")
-        count = links.count()
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-        print("Found engines:", count)
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
 
-        for i in range(min(count, 10)):
-            title = links.nth(i).inner_text().strip()
-            href = links.nth(i).get_attribute("href")
-            if href and title:
-                print(title)
-                print("https://www.bildelsbasen.se" + href)
-                print("-----")
-
-        browser.close()
-
-if __name__ == "__main__":
-    main()
+      - name: Run watcher
+        run: python watcher.py
