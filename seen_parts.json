@@ -1,7 +1,7 @@
 {
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-65849434": {
     "title": "W495801 | Motor Diesel",
-    "price": 6477.6
+    "price": null
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-66980665/1010200Q5J": {
     "title": "W72203 | Motor Diesel",
@@ -23,20 +23,8 @@
     "title": "W704599 | Motor Diesel",
     "price": 25000.0
   },
-  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-66958693/1010201Q0F": {
-    "title": "W117261 | Motor Diesel",
-    "price": 23203.4
-  },
-  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-67014392/1010201Q0F": {
-    "title": "W119383 | Motor Diesel",
-    "price": 23203.4
-  },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TALISMAN/2016_2020/Motor/Motor-Diesel/_/ID-65850313/8201532500": {
     "title": "W371717 | Motor Diesel",
-    "price": 23203.4
-  },
-  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-67209971/1010201Q0F": {
-    "title": "W124294 | Motor Diesel",
     "price": 23203.4
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-KADJAR/2015_2027/Motor/Motor-Diesel/_/ID-66773897/8201732812": {
@@ -166,6 +154,10 @@
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-65716835": {
     "title": "W1782378 | Motor Diesel",
     "price": 45900.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Fiat/FIAT-TALENTO/2016_2020/Motor/Motor-Diesel/_/ID-67211709/6000617549": {
+    "title": "W1076358 | Motor Diesel",
+    "price": 46000.0
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-62201786/95522926": {
     "title": "W687735 | Motor Diesel",
