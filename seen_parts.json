@@ -1,7 +1,7 @@
 {
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-65849434": {
     "title": "W495801 | Motor Diesel",
-    "price": null
+    "price": 6477.6
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-66980665/1010200Q5J": {
     "title": "W72203 | Motor Diesel",
@@ -25,19 +25,23 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-66958693/1010201Q0F": {
     "title": "W117261 | Motor Diesel",
-    "price": 23182.0
+    "price": 23203.4
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-67014392/1010201Q0F": {
     "title": "W119383 | Motor Diesel",
-    "price": 23182.0
+    "price": 23203.4
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TALISMAN/2016_2020/Motor/Motor-Diesel/_/ID-65850313/8201532500": {
     "title": "W371717 | Motor Diesel",
-    "price": 23182.0
+    "price": 23203.4
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-67209971/1010201Q0F": {
+    "title": "W124294 | Motor Diesel",
+    "price": 23203.4
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-KADJAR/2015_2027/Motor/Motor-Diesel/_/ID-66773897/8201732812": {
     "title": "W363226 | Motor Diesel",
-    "price": 24147.9
+    "price": 24170.2
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-58630221/1010200Q5J": {
     "title": "W95010 | Motor Diesel",
@@ -53,11 +57,11 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-64373982": {
     "title": "W140270 | Motor Diesel",
-    "price": 27045.7
+    "price": 27070.7
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-X_TRAIL/2014_2021/Motor/Motor-Diesel/_/ID-67035949/1010201Q1C": {
     "title": "W1013737 | Motor Diesel",
-    "price": 27045.7
+    "price": 27070.7
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI%2B2/2010_2014/Motor/Motor-Diesel/_/ID-61720817/1010200Q5J": {
     "title": "W288750 | Motor Diesel",
@@ -85,11 +89,11 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-63053279": {
     "title": "W593895 | Motor Diesel",
-    "price": 28204.7
+    "price": 28230.9
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-67197942/1010201Q2E": {
     "title": "W358507 | Motor Diesel",
-    "price": 29360.0
+    "price": 29387.2
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-59059201/1010201Q0F": {
     "title": "W656229 | Motor Diesel",
@@ -119,6 +123,10 @@
     "title": "W652241 | Motor Diesel",
     "price": 40000.0
   },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TALISMAN/2016_2020/Motor/Motor-Diesel/_/ID-67210135/8201604716": {
+    "title": "W2294709 | Motor Diesel",
+    "price": 40000.0
+  },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-61942866/8201704981": {
     "title": "W1229562 | Motor Diesel",
     "price": 41125.0
@@ -130,6 +138,10 @@
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-IV-&GRAND-SCENIC/2016_2020/Motor/Motor-Diesel/_/ID-64823083/8201721367": {
     "title": "W1269992 | Motor Diesel",
     "price": 41750.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-66803450/95527137": {
+    "title": "W80183 | Motor Diesel",
+    "price": 34747.2
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-64460092/1010200Q5J": {
     "title": "W652853 | Motor Diesel",
@@ -149,7 +161,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-65386309/95522926": {
     "title": "W991022 | Motor Diesel",
-    "price": 38636.6
+    "price": 38672.5
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-65716835": {
     "title": "W1782378 | Motor Diesel",
@@ -191,17 +203,13 @@
     "title": "W700029 | Motor Diesel",
     "price": 52500.0
   },
-  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-66803450/95527137": {
-    "title": "W80183 | Motor Diesel",
-    "price": 45127.6
-  },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-66920943": {
     "title": "W2632026 | Motor Diesel",
     "price": 54995.0
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67066860/95527137": {
     "title": "W121507 | Motor Diesel",
-    "price": 45127.6
+    "price": 45169.4
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Fiat/FIAT-TALENTO/2016_2020/Motor/Motor-Diesel/_/ID-66458028/6000617291": {
     "title": "W1445461 | Motor Diesel",
@@ -213,7 +221,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Fiat/FIAT-TALENTO/2016_2020/Motor/Motor-Diesel/_/ID-63315234/6000617291": {
     "title": "W335158 | Motor Diesel",
-    "price": 57955.0
+    "price": 58008.6
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-49227128/R9M450": {
     "title": "W10778 | Motor Diesel",
