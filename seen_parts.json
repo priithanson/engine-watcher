@@ -1,7 +1,7 @@
 {
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2014_2017/Motor/Motor-Diesel/_/ID-65849434": {
     "title": "W495801 | Motor Diesel",
-    "price": null
+    "price": 6550.2
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-66980665/1010200Q5J": {
     "title": "W72203 | Motor Diesel",
@@ -9,7 +9,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-MEGANE-III/2009_2015/Motor/Motor-Diesel/_/ID-62600847/8201201884": {
     "title": "W548699 | Motor Diesel",
-    "price": 17500.0
+    "price": null
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-67221988": {
     "title": "W1017753 | Motor Diesel",
@@ -77,6 +77,10 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI%2B2/2010_2014/Motor/Motor-Diesel/_/ID-63346460/1010200Q5J": {
     "title": "W1571274 | Motor Diesel",
+    "price": 35000.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI%2B2/2010_2014/Motor/Motor-Diesel/_/ID-67242921/1010200Q5J": {
+    "title": "W674278 | Motor Diesel",
     "price": 35000.0
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-63053279": {
@@ -205,7 +209,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67066860/95527137": {
     "title": "W121507 | Motor Diesel",
-    "price": 45675.8
+    "price": null
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Fiat/FIAT-TALENTO/2016_2020/Motor/Motor-Diesel/_/ID-66458028/6000617291": {
     "title": "W1445461 | Motor Diesel",
@@ -221,7 +225,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-49227128/R9M450": {
     "title": "W10778 | Motor Diesel",
-    "price": 74900.0
+    "price": null
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-55558030/8201704979": {
     "title": "W37318 | Motor Diesel",
