@@ -84,6 +84,16 @@ def format_price(price):
     return f"{price:.2f} SEK"
 
 
+def is_price_allowed(price, max_price):
+    if max_price is None:
+        return True
+
+    if price is None:
+        return True
+
+    return price <= max_price
+
+
 def send_email(search_name, new_items, cheaper_items, price_added_items):
     if not EMAIL_USER or not EMAIL_PASS:
         print("Email secrets missing")
@@ -152,9 +162,17 @@ def main():
 
     print("Loaded searches:", len(searches))
     for s in searches:
-        print("-", s["name"], "|", s["site"], "|", s["url"])
+        print(
+            "-",
+            s["name"],
+            "|",
+            s["site"],
+            "|",
+            s["url"],
+            "| max_price:",
+            s.get("max_price")
+        )
 
-    # TEST EMAIL
     if os.environ.get("TEST_EMAIL") == "1":
         send_email(
             "MULTI",
@@ -181,6 +199,7 @@ def main():
             search_name = search["name"]
             search_site = search["site"]
             search_url = search["url"]
+            max_price = search.get("max_price")
 
             if search_site.lower() != "bildelsbasen":
                 print("Skipping unsupported site:", search_site)
@@ -188,6 +207,7 @@ def main():
 
             print("Running search:", search_name)
             print("URL:", search_url)
+            print("Max price:", max_price)
 
             old_search_seen = old_seen.get(search_name, {})
             current_search_data = {}
@@ -232,6 +252,10 @@ def main():
 
                     body_text = detail_page.locator("body").inner_text()
                     price = extract_price(body_text)
+
+                    if not is_price_allowed(price, max_price):
+                        print(f"[{search_name}] Skipping over max_price:", price, detail_url)
+                        continue
 
                     current_search_data[detail_url] = {
                         "title": title,
