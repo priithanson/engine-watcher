@@ -11,6 +11,12 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651940&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 40000
+    },
+    {
+      "name": "CFC",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CFC&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 50000
     }
   ]
 }
