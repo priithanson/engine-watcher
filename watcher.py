@@ -131,7 +131,12 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
     body = "\n".join(lines)
 
     msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = f"Bildelsbasen {search_name} muutused"
+    msg["Subject"] = (
+        f"engine-watcher: "
+        f"{len(new_items)} new, "
+        f"{len(cheaper_items)} cheaper, "
+        f"{len(price_added_items)} price added"
+    )
     msg["From"] = EMAIL_USER
     msg["To"] = EMAIL_USER
 
