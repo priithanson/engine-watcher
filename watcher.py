@@ -143,8 +143,14 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
 
 
 def main():
+
     searches = load_searches()
-    search = searches[0]  # Step 1: kasutame ainult esimest otsingut
+    search = searches[0]  # endiselt ainult esimene
+
+    # 👇 UUS (Step 2a debug)
+    print("Loaded searches:", len(searches))
+    for s in searches:
+        print("-", s["name"], "|", s["site"], "|", s["url"])
 
     search_name = search["name"]
     search_site = search["site"]
