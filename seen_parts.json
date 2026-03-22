@@ -9,7 +9,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-MEGANE-III/2009_2015/Motor/Motor-Diesel/_/ID-62600847/8201201884": {
     "title": "W548699 | Motor Diesel",
-    "price": null
+    "price": 17500.0
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-67221988": {
     "title": "W1017753 | Motor Diesel",
@@ -209,7 +209,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67066860/95527137": {
     "title": "W121507 | Motor Diesel",
-    "price": null
+    "price": 45675.8
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Fiat/FIAT-TALENTO/2016_2020/Motor/Motor-Diesel/_/ID-66458028/6000617291": {
     "title": "W1445461 | Motor Diesel",
@@ -225,7 +225,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NV300/2016_2022/Motor/Motor-Diesel/_/ID-49227128/R9M450": {
     "title": "W10778 | Motor Diesel",
-    "price": null
+    "price": 74900.0
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-55558030/8201704979": {
     "title": "W37318 | Motor Diesel",
@@ -285,7 +285,7 @@
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-43949832": {
     "title": "W3226 | Motor Diesel",
-    "price": 89875.0
+    "price": null
   },
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-43950414/1010200Q5J": {
     "title": "W3229 | Motor Diesel",
@@ -326,5 +326,97 @@
   "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-67011076": {
     "title": "W1786677 | Motor Diesel",
     "price": 1125.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62558203/A-651-010-14-46": {
+    "title": "W79816 | Motor Diesel",
+    "price": 37500.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-55859801/A6510105502": {
+    "title": "W42686 | Motor Diesel",
+    "price": 39990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62111932/A6510105502": {
+    "title": "W54921 | Motor Diesel",
+    "price": 39990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62950232": {
+    "title": "W56427 | Motor Diesel",
+    "price": 39990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63157622/A6510100846": {
+    "title": "W1249161 | Motor Diesel",
+    "price": 45000.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-50061928/A6510105502": {
+    "title": "W39032 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-51444086/A6510105502": {
+    "title": "W40654 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-56050942/A6510105502": {
+    "title": "W43413 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-58377799/A6510105502": {
+    "title": "W46631 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-59540310/A6510105502": {
+    "title": "W49161 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-60335116/A6510105502": {
+    "title": "W43302 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62950247": {
+    "title": "W56429 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62966374/A6510105502": {
+    "title": "W56484 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63003946/A6510105502": {
+    "title": "W56587 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63196045/A6510105502": {
+    "title": "W57205 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-64437868": {
+    "title": "W58769 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-64841410/A6510105502": {
+    "title": "W60058 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-64920370": {
+    "title": "W60498 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-65076937/A-651-010-55-02": {
+    "title": "W60947 | Motor Diesel",
+    "price": 45990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-60647490/A6510105502": {
+    "title": "W53010 | Motor Diesel",
+    "price": 51990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-65635555/A-651-010-08-46": {
+    "title": "W62814 | Motor Diesel",
+    "price": 55000.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63148455/A6510105502": {
+    "title": "W57023 | Motor Diesel",
+    "price": 59990.0
+  },
+  "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-67091734": {
+    "title": "W64878 | Motor Diesel",
+    "price": 59990.0
   }
 }
