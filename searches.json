@@ -3,12 +3,14 @@
     {
       "name": "R9M",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=R9M&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 45000
     },
     {
       "name": "651940",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651940&limit=100&sort_column=part_price_sort_sek&sort_direction=asc"
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651940&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 40000
     }
   ]
 }
