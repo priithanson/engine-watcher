@@ -101,8 +101,8 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
         lines.append("UUED KUULUTUSED")
         lines.append("")
 
-        for title, price, url in new_items:
-            lines.append(title)
+        for item_search_name, title, price, url in new_items:
+            lines.append(f"[{item_search_name}] {title}")
             lines.append(f"Hind: {format_price(price)}")
             lines.append(url)
             lines.append("")
@@ -111,8 +111,8 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
         lines.append("HINNALANGUSED")
         lines.append("")
 
-        for title, old_price, new_price, url in cheaper_items:
-            lines.append(title)
+        for item_search_name, title, old_price, new_price, url in cheaper_items:
+            lines.append(f"[{item_search_name}] {title}")
             lines.append(f"Vana hind: {format_price(old_price)}")
             lines.append(f"Uus hind: {format_price(new_price)}")
             lines.append(url)
@@ -122,8 +122,8 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
         lines.append("HIND LISATI HILJEM")
         lines.append("")
 
-        for title, new_price, url in price_added_items:
-            lines.append(title)
+        for item_search_name, title, new_price, url in price_added_items:
+            lines.append(f"[{item_search_name}] {title}")
             lines.append(f"Hind: {format_price(new_price)}")
             lines.append(url)
             lines.append("")
@@ -153,7 +153,7 @@ def main():
     if os.environ.get("TEST_EMAIL") == "1":
         send_email(
             "MULTI",
-            [("TEST ENGINE", 9999, "https://test-link")],
+            [("TEST", "TEST ENGINE", 9999, "https://test-link")],
             [],
             []
         )
@@ -250,15 +250,15 @@ def main():
                 new_price = item.get("price")
 
                 if old_item is None:
-                    all_new.append((item["title"], new_price, url))
+                    all_new.append((search_name, item["title"], new_price, url))
                     continue
 
                 old_price = old_item.get("price")
 
                 if old_price is None and new_price is not None:
-                    all_price_added.append((item["title"], new_price, url))
+                    all_price_added.append((search_name, item["title"], new_price, url))
                 elif old_price is not None and new_price is not None and new_price < old_price:
-                    all_cheaper.append((item["title"], old_price, new_price, url))
+                    all_cheaper.append((search_name, item["title"], old_price, new_price, url))
 
             current_seen[search_name] = current_search_data
 
