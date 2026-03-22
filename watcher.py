@@ -289,7 +289,9 @@ def main():
                 elif old_price is not None and new_price is not None and new_price < old_price:
                     all_cheaper.append((search_name, item["title"], old_price, new_price, url))
 
-            current_seen[search_name] = current_search_data
+            merged_search_data = dict(old_search_seen)
+            merged_search_data.update(current_search_data)
+            current_seen[search_name] = merged_search_data
 
         browser.close()
 
