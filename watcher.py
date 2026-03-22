@@ -165,7 +165,7 @@ def main():
     all_price_added = []
 
     old_seen = load_seen()
-    current_data = {}
+    current_seen = {}
 
     print("Opening Bildelsbasen in browser...")
 
@@ -183,6 +183,9 @@ def main():
 
             print("Running search:", search_name)
             print("URL:", search_url)
+
+            old_search_seen = old_seen.get(search_name, {})
+            current_search_data = {}
 
             search_page = browser.new_page()
             search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
@@ -225,7 +228,7 @@ def main():
                     body_text = detail_page.locator("body").inner_text()
                     price = extract_price(body_text)
 
-                    current_data[detail_url] = {
+                    current_search_data[detail_url] = {
                         "title": title,
                         "price": price
                     }
@@ -234,7 +237,7 @@ def main():
                     print("Detail page failed:", detail_url)
                     print(str(e))
 
-                    current_data[detail_url] = {
+                    current_search_data[detail_url] = {
                         "title": title,
                         "price": None
                     }
@@ -242,29 +245,31 @@ def main():
             detail_page.close()
             search_page.close()
 
+            for url, item in current_search_data.items():
+                old_item = old_search_seen.get(url)
+                new_price = item.get("price")
+
+                if old_item is None:
+                    all_new.append((item["title"], new_price, url))
+                    continue
+
+                old_price = old_item.get("price")
+
+                if old_price is None and new_price is not None:
+                    all_price_added.append((item["title"], new_price, url))
+                elif old_price is not None and new_price is not None and new_price < old_price:
+                    all_cheaper.append((item["title"], old_price, new_price, url))
+
+            current_seen[search_name] = current_search_data
+
         browser.close()
-
-    for url, item in current_data.items():
-        old_item = old_seen.get(url)
-        new_price = item.get("price")
-
-        if old_item is None:
-            all_new.append((item["title"], new_price, url))
-            continue
-
-        old_price = old_item.get("price")
-
-        if old_price is None and new_price is not None:
-            all_price_added.append((item["title"], new_price, url))
-        elif old_price is not None and new_price is not None and new_price < old_price:
-            all_cheaper.append((item["title"], old_price, new_price, url))
 
     print("New engines:", len(all_new))
     print("Cheaper engines:", len(all_cheaper))
     print("Price added later:", len(all_price_added))
 
     send_email("MULTI", all_new, all_cheaper, all_price_added)
-    save_seen(current_data)
+    save_seen(current_seen)
 
 
 if __name__ == "__main__":
