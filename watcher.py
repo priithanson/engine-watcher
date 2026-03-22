@@ -143,127 +143,127 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
 
 
 def main():
-
     searches = load_searches()
-    search = searches[0]  # endiselt ainult esimene
 
-    # 👇 UUS (Step 2a debug)
     print("Loaded searches:", len(searches))
     for s in searches:
         print("-", s["name"], "|", s["site"], "|", s["url"])
 
-    search_name = search["name"]
-    search_site = search["site"]
-    url = search["url"]
-
-    if search_site.lower() != "bildelsbasen":
-        raise ValueError(f"Unsupported site: {search_site}")
-
     # TEST EMAIL
     if os.environ.get("TEST_EMAIL") == "1":
         send_email(
-            search_name,
+            "MULTI",
             [("TEST ENGINE", 9999, "https://test-link")],
             [],
             []
         )
-
         print("Test email sent")
         return
 
-    print("Opening Bildelsbasen in browser...")
-    print("Search:", search_name)
-    print("URL:", url)
+    all_new = []
+    all_cheaper = []
+    all_price_added = []
 
     old_seen = load_seen()
+    current_data = {}
+
+    print("Opening Bildelsbasen in browser...")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
 
-        search_page = browser.new_page()
-        search_page.goto(url, wait_until="domcontentloaded", timeout=60000)
-        search_page.wait_for_timeout(8000)
+        for search in searches:
+            search_name = search["name"]
+            search_site = search["site"]
+            search_url = search["url"]
 
-        links = search_page.locator("a")
-        count = links.count()
+            if search_site.lower() != "bildelsbasen":
+                print("Skipping unsupported site:", search_site)
+                continue
 
-        results = []
-        seen_urls = set()
+            print("Running search:", search_name)
+            print("URL:", search_url)
 
-        for i in range(count):
-            text = links.nth(i).inner_text().strip()
-            href = links.nth(i).get_attribute("href") or ""
+            search_page = browser.new_page()
+            search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+            search_page.wait_for_timeout(8000)
 
-            is_product = (
-                text.startswith("W")
-                and "Motor Diesel" in text
-                and "/Motor/Motor-Diesel/_/ID-" in href
-            )
+            links = search_page.locator("a")
+            count = links.count()
 
-            if is_product:
-                full_url = "https://www.bildelsbasen.se" + href
+            results = []
+            seen_urls = set()
 
-                if full_url not in seen_urls:
-                    seen_urls.add(full_url)
-                    results.append((text, full_url))
+            for i in range(count):
+                text = links.nth(i).inner_text().strip()
+                href = links.nth(i).get_attribute("href") or ""
 
-        print("Found engines:", len(results))
+                is_product = (
+                    text.startswith("W")
+                    and "Motor Diesel" in text
+                    and "/Motor/Motor-Diesel/_/ID-" in href
+                )
 
-        detail_page = browser.new_page()
-        current_data = {}
+                if is_product:
+                    full_url = "https://www.bildelsbasen.se" + href
 
-        for idx, (title, url) in enumerate(results, start=1):
-            print(f"Checking detail {idx}/{len(results)}")
+                    if full_url not in seen_urls:
+                        seen_urls.add(full_url)
+                        results.append((text, full_url))
 
-            try:
-                detail_page.goto(url, wait_until="domcontentloaded", timeout=60000)
-                detail_page.wait_for_timeout(2500)
+            print(f"[{search_name}] Found engines:", len(results))
 
-                body_text = detail_page.locator("body").inner_text()
-                price = extract_price(body_text)
+            detail_page = browser.new_page()
 
-                current_data[url] = {
-                    "title": title,
-                    "price": price
-                }
+            for idx, (title, detail_url) in enumerate(results, start=1):
+                print(f"[{search_name}] Checking detail {idx}/{len(results)}")
 
-            except Exception as e:
-                print("Detail page failed:", url)
-                print(str(e))
+                try:
+                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
+                    detail_page.wait_for_timeout(2500)
 
-                current_data[url] = {
-                    "title": title,
-                    "price": None
-                }
+                    body_text = detail_page.locator("body").inner_text()
+                    price = extract_price(body_text)
 
-        detail_page.close()
-        search_page.close()
+                    current_data[detail_url] = {
+                        "title": title,
+                        "price": price
+                    }
+
+                except Exception as e:
+                    print("Detail page failed:", detail_url)
+                    print(str(e))
+
+                    current_data[detail_url] = {
+                        "title": title,
+                        "price": None
+                    }
+
+            detail_page.close()
+            search_page.close()
+
         browser.close()
-
-    new_items = []
-    cheaper_items = []
-    price_added_items = []
 
     for url, item in current_data.items():
         old_item = old_seen.get(url)
         new_price = item.get("price")
 
         if old_item is None:
-            new_items.append((item["title"], new_price, url))
+            all_new.append((item["title"], new_price, url))
             continue
 
         old_price = old_item.get("price")
 
         if old_price is None and new_price is not None:
-            price_added_items.append((item["title"], new_price, url))
+            all_price_added.append((item["title"], new_price, url))
         elif old_price is not None and new_price is not None and new_price < old_price:
-            cheaper_items.append((item["title"], old_price, new_price, url))
+            all_cheaper.append((item["title"], old_price, new_price, url))
 
-    print("New engines:", len(new_items))
-    print("Cheaper engines:", len(cheaper_items))
-    print("Price added later:", len(price_added_items))
+    print("New engines:", len(all_new))
+    print("Cheaper engines:", len(all_cheaper))
+    print("Price added later:", len(all_price_added))
 
-    send_email(search_name, new_items, cheaper_items, price_added_items)
+    send_email("MULTI", all_new, all_cheaper, all_price_added)
     save_seen(current_data)
 
 
