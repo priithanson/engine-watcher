@@ -336,7 +336,7 @@
   "651940": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62558203/A-651-010-14-46": {
       "title": "W79816 | Motor Diesel",
-      "price": 37500.0
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-55859801/A6510105502": {
       "title": "W42686 | Motor Diesel",
@@ -435,6 +435,14 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67241398/03L-100-092-AX": {
       "title": "W538615 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67259659/03L-100-092-A": {
+      "title": "W1018535 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67264849/03L100092A": {
+      "title": "W388304 | Motor Diesel",
+      "price": 42233.0
     }
   },
   "651950": {
@@ -460,13 +468,25 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-65539460/A6510105122": {
       "title": "W693332 | Motor Diesel",
-      "price": 30000.0
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67267679/OM651.950": {
+      "title": "W689323 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67264846/A6510104715": {
+      "title": "W388272 | Motor Diesel",
+      "price": 47608.6
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67262555/A6510104715": {
+      "title": "W382750 | Motor Diesel",
+      "price": 49912.5
     }
   },
   "G9U": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-PRIMASTAR/Alla/Motor/Motor-Diesel/_/ID-64596130/1010200QAR": {
       "title": "W123660 | Motor Diesel",
-      "price": 15995.0
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-INTERSTAR/2002_2011/Motor/Motor-Diesel/_/ID-60259645/1010200Q0E": {
       "title": "W295120 | Motor Diesel",
