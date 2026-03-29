@@ -212,6 +212,16 @@ def main():
     all_cheaper = []
     all_price_added = []
 
+    if os.environ.get("TEST_PRICE_DROP") == "1":
+        old_price = 50000
+        new_price_small = 47000
+        new_price_big = 44000
+
+        print("TEST small drop should be False:", is_significant_price_drop(old_price, new_price_small))
+        print("TEST big drop should be True:", is_significant_price_drop(old_price, new_price_big))
+        print("TEST big drop %:", price_drop_percent(old_price, new_price_big))
+        return
+
     old_seen = load_seen()
     current_seen = {}
 
@@ -324,7 +334,6 @@ def main():
                             (search_name, item["title"], old_price, new_price, drop_pct, url)
                         )
 
-                # Mälu uuendame alati, isegi siis kui hinnalangus oli alla 10%
                 merged_search_data[url] = {
                     "title": item["title"],
                     "price": new_price
