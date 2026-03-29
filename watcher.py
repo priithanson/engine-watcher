@@ -183,15 +183,109 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
 
 
 def main():
-    print("Running TEST_PRICE_DROP logic...")
+    searches = load_searches()
 
-    old_price = 50000
-    new_price_small = 47000
-    new_price_big = 44000
+    all_new = []
+    all_cheaper = []
+    all_price_added = []
 
-    print("TEST small drop should be False:", is_significant_price_drop(old_price, new_price_small))
-    print("TEST big drop should be True:", is_significant_price_drop(old_price, new_price_big))
-    print("TEST big drop %:", price_drop_percent(old_price, new_price_big))
+    old_seen = load_seen()
+    current_seen = {}
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+
+        for search in searches:
+            search_name = search["name"]
+            search_site = search["site"]
+            search_url = search["url"]
+            max_price = search.get("max_price")
+
+            if search_site.lower() != "bildelsbasen":
+                continue
+
+            old_search_seen = old_seen.get(search_name, {})
+            current_search_data = {}
+
+            search_page = browser.new_page()
+            search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+            search_page.wait_for_timeout(8000)
+
+            links = search_page.locator("a")
+            count = links.count()
+
+            results = []
+            seen_urls = set()
+
+            for i in range(count):
+                text = links.nth(i).inner_text().strip()
+                href = links.nth(i).get_attribute("href") or ""
+
+                if "/Motor/Motor-Diesel/" in href:
+                    full_url = "https://www.bildelsbasen.se" + href
+
+                    if full_url not in seen_urls:
+                        seen_urls.add(full_url)
+                        results.append((text, full_url))
+
+            detail_page = browser.new_page()
+
+            for title, detail_url in results:
+                try:
+                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
+                    detail_page.wait_for_timeout(2500)
+
+                    body_text = detail_page.locator("body").inner_text()
+                    price = extract_price(body_text)
+
+                    if not is_price_allowed(price, max_price):
+                        continue
+
+                    current_search_data[detail_url] = {
+                        "title": title,
+                        "price": price
+                    }
+
+                except Exception:
+                    current_search_data[detail_url] = {
+                        "title": title,
+                        "price": None
+                    }
+
+            detail_page.close()
+            search_page.close()
+
+            merged_search_data = dict(old_search_seen)
+
+            for url, item in current_search_data.items():
+                old_item = old_search_seen.get(url)
+                new_price = item.get("price")
+
+                if old_item is None:
+                    all_new.append((search_name, item["title"], new_price, url))
+                    merged_search_data[url] = item
+                    continue
+
+                old_price = old_item.get("price")
+
+                if old_price is None and new_price is not None:
+                    all_price_added.append((search_name, item["title"], new_price, url))
+
+                elif old_price is not None and new_price is not None and new_price < old_price:
+                    if is_significant_price_drop(old_price, new_price):
+                        drop_pct = price_drop_percent(old_price, new_price)
+                        all_cheaper.append(
+                            (search_name, item["title"], old_price, new_price, drop_pct, url)
+                        )
+
+                merged_search_data[url] = item
+
+            current_seen[search_name] = merged_search_data
+
+        browser.close()
+
+    send_email("MULTI", all_new, all_cheaper, all_price_added)
+    save_seen(current_seen)
 
 
 if __name__ == "__main__":
