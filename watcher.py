@@ -15,169 +15,74 @@ EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
 PRICE_DROP_ALERT_THRESHOLD = 0.10  # 10%
 
+MAX_RESULTS = 50  # 🚀 LIMIT SPEED FIX
+
 
 def load_searches():
-    path = Path(SEARCHES_FILE)
-    if not path.exists():
-        raise FileNotFoundError(f"{SEARCHES_FILE} not found")
-
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        raise ValueError(f"{SEARCHES_FILE} is empty")
-
-    data = json.loads(text)
-    searches = data.get("searches", [])
-
-    if not searches:
-        raise ValueError("No searches found in searches.json")
-
-    return searches
+    return json.loads(Path(SEARCHES_FILE).read_text())["searches"]
 
 
 def load_seen():
     path = Path(SEEN_FILE)
     if not path.exists():
         return {}
-
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        return {}
-
-    try:
-        data = json.loads(text)
-        return data if isinstance(data, dict) else {}
-    except Exception:
-        return {}
+    return json.loads(path.read_text() or "{}")
 
 
 def save_seen(data):
-    Path(SEEN_FILE).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
+    Path(SEEN_FILE).write_text(json.dumps(data, indent=2))
 
 
 def extract_price(text):
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-
-    for line in lines:
-        if "SEK" in line:
-            if line == "SWE / SE / SEK /":
-                continue
-
-            m = re.search(r"([\d\s.,]+)\s*SEK", line)
-
-            if m:
-                raw = m.group(1)
-                normalized = raw.replace(" ", "").replace(",", "")
-
-                try:
-                    return float(normalized)
-                except Exception:
-                    pass
-
-    return None
+    m = re.search(r"([\d\s.,]+)\s*SEK", text)
+    if not m:
+        return None
+    try:
+        return float(m.group(1).replace(" ", "").replace(",", ""))
+    except:
+        return None
 
 
-def format_price(price):
-    if price is None:
-        return "hind puudub"
-
-    return f"{price:.2f} SEK"
+def format_price(p):
+    return "hind puudub" if p is None else f"{p:.0f} SEK"
 
 
-def is_price_allowed(price, max_price):
-    if max_price is None:
-        return True
-
-    if price is None:
-        return True
-
-    return price <= max_price
-
-
-def is_significant_price_drop(old_price, new_price, threshold=PRICE_DROP_ALERT_THRESHOLD):
-    if old_price is None or new_price is None:
+def is_significant_price_drop(old_price, new_price):
+    if not old_price or not new_price:
         return False
-
-    if old_price <= 0:
-        return False
-
     if new_price >= old_price:
         return False
-
-    drop_pct = (old_price - new_price) / old_price
-    return drop_pct >= threshold
+    return (old_price - new_price) / old_price >= PRICE_DROP_ALERT_THRESHOLD
 
 
 def price_drop_percent(old_price, new_price):
-    if old_price is None or new_price is None or old_price <= 0:
-        return 0.0
-
     return ((old_price - new_price) / old_price) * 100
 
 
-def send_email(search_name, new_items, cheaper_items, price_added_items):
-    if not EMAIL_USER or not EMAIL_PASS:
-        print("Email secrets missing")
-        return
-
-    if not new_items and not cheaper_items and not price_added_items:
+def send_email(name, new, cheaper, added):
+    if not (new or cheaper or added):
         print("No email sent, no changes")
         return
 
-    lines = []
-    lines.append(f"Otsing: {search_name}")
-    lines.append("")
+    body = []
 
-    if new_items:
-        lines.append("UUED KUULUTUSED")
-        lines.append("")
+    for s, t, p, u in new:
+        body.append(f"[{s}] {t}\n{format_price(p)}\n{u}\n")
 
-        for item_search_name, title, price, url in new_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(price)}")
-            lines.append(url)
-            lines.append("")
+    for s, t, op, np, dp, u in cheaper:
+        body.append(f"[{s}] {t}\n{format_price(op)} → {format_price(np)} (-{dp:.1f}%)\n{u}\n")
 
-    if cheaper_items:
-        lines.append("HINNALANGUSED")
-        lines.append("")
+    for s, t, p, u in added:
+        body.append(f"[{s}] {t}\n{format_price(p)}\n{u}\n")
 
-        for item in cheaper_items:
-            item_search_name, title, old_price, new_price, drop_pct, url = item
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Vana hind: {format_price(old_price)}")
-            lines.append(f"Uus hind: {format_price(new_price)}")
-            lines.append(f"Langus: -{drop_pct:.1f}%")
-            lines.append(url)
-            lines.append("")
-
-    if price_added_items:
-        lines.append("HIND LISATI HILJEM")
-        lines.append("")
-
-        for item_search_name, title, new_price, url in price_added_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(new_price)}")
-            lines.append(url)
-            lines.append("")
-
-    body = "\n".join(lines)
-
-    msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = (
-        f"engine-watcher: "
-        f"{len(new_items)} new, "
-        f"{len(cheaper_items)} cheaper, "
-        f"{len(price_added_items)} price added"
-    )
+    msg = MIMEText("\n".join(body))
+    msg["Subject"] = f"{len(new)} new, {len(cheaper)} cheaper, {len(added)} added"
     msg["From"] = EMAIL_USER
     msg["To"] = EMAIL_USER
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(EMAIL_USER, EMAIL_PASS)
-        server.send_message(msg)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+        s.login(EMAIL_USER, EMAIL_PASS)
+        s.send_message(msg)
 
     print("Email sent")
 
@@ -185,10 +90,7 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
 def main():
     searches = load_searches()
 
-    all_new = []
-    all_cheaper = []
-    all_price_added = []
-
+    all_new, all_cheaper, all_added = [], [], []
     old_seen = load_seen()
     current_seen = {}
 
@@ -196,95 +98,80 @@ def main():
         browser = p.chromium.launch(headless=True)
 
         for search in searches:
-            search_name = search["name"]
-            search_site = search["site"]
-            search_url = search["url"]
-            max_price = search.get("max_price")
+            name = search["name"]
+            url = search["url"]
 
-            if search_site.lower() != "bildelsbasen":
-                continue
+            print("Running:", name)
 
-            old_search_seen = old_seen.get(search_name, {})
-            current_search_data = {}
+            old_data = old_seen.get(name, {})
+            current = {}
 
-            search_page = browser.new_page()
-            search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
-            search_page.wait_for_timeout(8000)
+            page = browser.new_page()
+            page.goto(url)
+            page.wait_for_timeout(5000)
 
-            links = search_page.locator("a")
-            count = links.count()
-
+            links = page.locator("a")
             results = []
-            seen_urls = set()
+            seen = set()
 
-            for i in range(count):
-                text = links.nth(i).inner_text().strip()
+            for i in range(min(links.count(), 200)):
                 href = links.nth(i).get_attribute("href") or ""
 
-                if "/Motor/Motor-Diesel/" in href:
-                    full_url = "https://www.bildelsbasen.se" + href
+                if "/ID-" in href and "/Motor/Motor-Diesel/" in href:
+                    full = "https://www.bildelsbasen.se" + href
+                    if full not in seen:
+                        seen.add(full)
+                        results.append(full)
 
-                    if full_url not in seen_urls:
-                        seen_urls.add(full_url)
-                        results.append((text, full_url))
+                if len(results) >= MAX_RESULTS:
+                    break
 
-            detail_page = browser.new_page()
+            print(name, "links:", len(results))
 
-            for title, detail_url in results:
+            detail = browser.new_page()
+
+            for u in results:
                 try:
-                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
-                    detail_page.wait_for_timeout(2500)
+                    detail.goto(u)
+                    detail.wait_for_timeout(1500)
+                    text = detail.locator("body").inner_text()
+                    price = extract_price(text)
+                    current[u] = {"price": price}
+                except:
+                    current[u] = {"price": None}
 
-                    body_text = detail_page.locator("body").inner_text()
-                    price = extract_price(body_text)
+            detail.close()
+            page.close()
 
-                    if not is_price_allowed(price, max_price):
-                        continue
+            merged = dict(old_data)
 
-                    current_search_data[detail_url] = {
-                        "title": title,
-                        "price": price
-                    }
+            for u, item in current.items():
+                old = old_data.get(u)
+                np = item["price"]
 
-                except Exception:
-                    current_search_data[detail_url] = {
-                        "title": title,
-                        "price": None
-                    }
+                if not old:
+                    all_new.append((name, u, np, u))
+                else:
+                    op = old.get("price")
 
-            detail_page.close()
-            search_page.close()
+                    if op is None and np:
+                        all_added.append((name, u, np, u))
 
-            merged_search_data = dict(old_search_seen)
+                    elif op and np and np < op:
+                        if is_significant_price_drop(op, np):
+                            all_cheaper.append((name, u, op, np, price_drop_percent(op, np), u))
 
-            for url, item in current_search_data.items():
-                old_item = old_search_seen.get(url)
-                new_price = item.get("price")
+                merged[u] = item
 
-                if old_item is None:
-                    all_new.append((search_name, item["title"], new_price, url))
-                    merged_search_data[url] = item
-                    continue
-
-                old_price = old_item.get("price")
-
-                if old_price is None and new_price is not None:
-                    all_price_added.append((search_name, item["title"], new_price, url))
-
-                elif old_price is not None and new_price is not None and new_price < old_price:
-                    if is_significant_price_drop(old_price, new_price):
-                        drop_pct = price_drop_percent(old_price, new_price)
-                        all_cheaper.append(
-                            (search_name, item["title"], old_price, new_price, drop_pct, url)
-                        )
-
-                merged_search_data[url] = item
-
-            current_seen[search_name] = merged_search_data
+            current_seen[name] = merged
 
         browser.close()
 
-    send_email("MULTI", all_new, all_cheaper, all_price_added)
+    print("New:", len(all_new))
+    print("Cheaper:", len(all_cheaper))
+    print("Added:", len(all_added))
+
+    send_email("MULTI", all_new, all_cheaper, all_added)
     save_seen(current_seen)
 
 
