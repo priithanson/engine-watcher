@@ -29,6 +29,24 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=G9U&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 25000
+   },
+    {
+      "name": "D5204T",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5204T&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 22000
+     },
+    {
+      "name": "D5244T1",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5244T1&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 25000
+      },
+    {
+      "name": "D5244T2",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5244T2&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 30000
     }
   ]
 }
