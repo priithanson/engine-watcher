@@ -57,24 +57,85 @@ def save_seen(data):
     )
 
 
+def parse_price_string(raw):
+    if raw is None:
+        return None
+
+    s = raw.replace("\xa0", " ").strip()
+    s = re.sub(r"[^\d,.\s]", "", s)
+    s = re.sub(r"\s+", "", s)
+
+    if not s:
+        return None
+
+    # Mõlemad olemas, nt 23,333.90 või 23.333,90
+    if "," in s and "." in s:
+        if s.rfind(".") > s.rfind(","):
+            # 23,333.90 -> 23333.90
+            s = s.replace(",", "")
+        else:
+            # 23.333,90 -> 23333.90
+            s = s.replace(".", "").replace(",", ".")
+    elif "," in s:
+        # Kui koma järel on 2 kohta, käsitle kümnendikuna
+        if len(s.split(",")[-1]) == 2:
+            s = s.replace(".", "").replace(",", ".")
+        else:
+            s = s.replace(",", "")
+    elif "." in s:
+        # Kui punkti järel ei ole 2 kohta, käsitle tuhandeeraldajana
+        if len(s.split(".")[-1]) != 2:
+            s = s.replace(".", "")
+
+    try:
+        return float(s)
+    except Exception:
+        return None
+
+
 def extract_price(text):
     lines = [line.strip() for line in text.splitlines() if line.strip()]
 
+    skip_keywords = (
+        "frakt",
+        "postnord",
+        "dsv",
+        "pallet",
+        "hämta hos oss",
+        "hämta",
+        "onlineköp",
+        "import",
+        "tull",
+        "avgift",
+    )
+
+    # 1) Eelista normaalset hinnarida ja ignoreeri transpordi/readme ridu
     for line in lines:
-        if "SEK" in line:
-            if line == "SWE / SE / SEK /":
-                continue
+        lower = line.lower()
 
-            m = re.search(r"([\d\s.,]+)\s*SEK", line)
+        if line == "SWE / SE / SEK /":
+            continue
 
-            if m:
-                raw = m.group(1)
-                normalized = raw.replace(" ", "").replace(",", "")
+        if "SEK" not in line:
+            continue
 
-                try:
-                    return float(normalized)
-                except Exception:
-                    pass
+        if any(keyword in lower for keyword in skip_keywords):
+            continue
+
+        m = re.search(r"([\d][\d\s.,\xa0]*)\s*SEK\b", line)
+
+        if m:
+            price = parse_price_string(m.group(1))
+            if price is not None:
+                return price
+
+    # 2) Fallback: otsi üle kogu teksti, lubades ka reavahed numbri ja SEK vahel
+    matches = re.finditer(r"([\d][\d\s.,\xa0]*)\s*SEK\b", text, flags=re.MULTILINE)
+
+    for match in matches:
+        price = parse_price_string(match.group(1))
+        if price is not None:
+            return price
 
     return None
 
@@ -298,28 +359,41 @@ def main():
             detail_page.close()
             search_page.close()
 
+            merged_search_data = dict(old_search_seen)
+
             for url, item in current_search_data.items():
                 old_item = old_search_seen.get(url)
                 new_price = item.get("price")
 
                 if old_item is None:
                     all_new.append((search_name, item["title"], new_price, url))
-                    continue
+                else:
+                    old_price = old_item.get("price")
 
-                old_price = old_item.get("price")
+                    if old_price is None and new_price is not None:
+                        all_price_added.append((search_name, item["title"], new_price, url))
 
-                if old_price is None and new_price is not None:
-                    all_price_added.append((search_name, item["title"], new_price, url))
+                    elif old_price is not None and new_price is not None and new_price < old_price:
+                        if is_significant_price_drop(old_price, new_price):
+                            drop_pct = price_drop_percent(old_price, new_price)
+                            all_cheaper.append(
+                                (search_name, item["title"], old_price, new_price, drop_pct, url)
+                            )
 
-                elif old_price is not None and new_price is not None and new_price < old_price:
-                    if is_significant_price_drop(old_price, new_price):
-                        drop_pct = price_drop_percent(old_price, new_price)
-                        all_cheaper.append(
-                            (search_name, item["title"], old_price, new_price, drop_pct, url)
-                        )
+                # OLULINE:
+                # kui hind jäi sellel jooksul lugemata, aga varem oli olemas,
+                # siis ära kirjuta vana hinda None-ga üle
+                if old_item is not None and item.get("price") is None and old_item.get("price") is not None:
+                    merged_search_data[url] = {
+                        "title": item.get("title") or old_item.get("title"),
+                        "price": old_item.get("price")
+                    }
+                else:
+                    merged_search_data[url] = {
+                        "title": item.get("title"),
+                        "price": item.get("price")
+                    }
 
-            merged_search_data = dict(old_search_seen)
-            merged_search_data.update(current_search_data)
             current_seen[search_name] = merged_search_data
 
         browser.close()
