@@ -13,6 +13,8 @@ SEEN_FILE = "seen_parts.json"
 EMAIL_USER = os.environ.get("EMAIL_USER")
 EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
+PRICE_DROP_ALERT_THRESHOLD = 0.10  # 10%
+
 
 def load_searches():
     path = Path(SEARCHES_FILE)
@@ -44,7 +46,7 @@ def load_seen():
     try:
         data = json.loads(text)
         return data if isinstance(data, dict) else {}
-    except:
+    except Exception:
         return {}
 
 
@@ -71,7 +73,7 @@ def extract_price(text):
 
                 try:
                     return float(normalized)
-                except:
+                except Exception:
                     pass
 
     return None
@@ -92,6 +94,27 @@ def is_price_allowed(price, max_price):
         return True
 
     return price <= max_price
+
+
+def is_significant_price_drop(old_price, new_price, threshold=PRICE_DROP_ALERT_THRESHOLD):
+    if old_price is None or new_price is None:
+        return False
+
+    if old_price <= 0:
+        return False
+
+    if new_price >= old_price:
+        return False
+
+    drop_pct = (old_price - new_price) / old_price
+    return drop_pct >= threshold
+
+
+def price_drop_percent(old_price, new_price):
+    if old_price is None or new_price is None or old_price <= 0:
+        return 0.0
+
+    return ((old_price - new_price) / old_price) * 100
 
 
 def send_email(search_name, new_items, cheaper_items, price_added_items):
@@ -121,10 +144,12 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
         lines.append("HINNALANGUSED")
         lines.append("")
 
-        for item_search_name, title, old_price, new_price, url in cheaper_items:
+        for item in cheaper_items:
+            item_search_name, title, old_price, new_price, drop_pct, url = item
             lines.append(f"[{item_search_name}] {title}")
             lines.append(f"Vana hind: {format_price(old_price)}")
             lines.append(f"Uus hind: {format_price(new_price)}")
+            lines.append(f"Langus: -{drop_pct:.1f}%")
             lines.append(url)
             lines.append("")
 
@@ -274,12 +299,18 @@ def main():
             detail_page.close()
             search_page.close()
 
+            merged_search_data = dict(old_search_seen)
+
             for url, item in current_search_data.items():
                 old_item = old_search_seen.get(url)
                 new_price = item.get("price")
 
                 if old_item is None:
                     all_new.append((search_name, item["title"], new_price, url))
+                    merged_search_data[url] = {
+                        "title": item["title"],
+                        "price": new_price
+                    }
                     continue
 
                 old_price = old_item.get("price")
@@ -287,10 +318,18 @@ def main():
                 if old_price is None and new_price is not None:
                     all_price_added.append((search_name, item["title"], new_price, url))
                 elif old_price is not None and new_price is not None and new_price < old_price:
-                    all_cheaper.append((search_name, item["title"], old_price, new_price, url))
+                    if is_significant_price_drop(old_price, new_price):
+                        drop_pct = price_drop_percent(old_price, new_price)
+                        all_cheaper.append(
+                            (search_name, item["title"], old_price, new_price, drop_pct, url)
+                        )
 
-            merged_search_data = dict(old_search_seen)
-            merged_search_data.update(current_search_data)
+                # Mälu uuendame alati, isegi siis kui hinnalangus oli alla 10%
+                merged_search_data[url] = {
+                    "title": item["title"],
+                    "price": new_price
+                }
+
             current_seen[search_name] = merged_search_data
 
         browser.close()
