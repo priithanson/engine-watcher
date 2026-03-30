@@ -47,6 +47,13 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5244T2&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 30000
+     },
+    {
+      "name": "36050451 D5244T4 08-08",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/OEM/36050451?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 1800
     }
   ]
 }
+
