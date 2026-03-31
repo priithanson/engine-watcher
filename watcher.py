@@ -1,410 +1,146 @@
 import json
-import os
+import time
 import re
-import smtplib
-from email.mime.text import MIMEText
-from pathlib import Path
-
-from playwright.sync_api import sync_playwright
-
-SEARCHES_FILE = "searches.json"
-SEEN_FILE = "seen_parts.json"
-
-EMAIL_USER = os.environ.get("EMAIL_USER")
-EMAIL_PASS = os.environ.get("EMAIL_PASS")
-
-PRICE_DROP_ALERT_THRESHOLD = 0.10  # 10%
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 
-def load_searches():
-    path = Path(SEARCHES_FILE)
-    if not path.exists():
-        raise FileNotFoundError(f"{SEARCHES_FILE} not found")
-
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        raise ValueError(f"{SEARCHES_FILE} is empty")
-
-    data = json.loads(text)
-    searches = data.get("searches", [])
-
-    if not searches:
-        raise ValueError("No searches found in searches.json")
-
-    return searches
+MAX_RESULTS = 100  # 🚀 rohkem tulemusi
 
 
-def load_seen():
-    path = Path(SEEN_FILE)
-    if not path.exists():
-        return {}
-
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        return {}
-
+def load_json(file):
     try:
-        data = json.loads(text)
-        return data if isinstance(data, dict) else {}
-    except Exception:
+        with open(file, "r") as f:
+            return json.load(f)
+    except:
         return {}
 
 
-def save_seen(data):
-    Path(SEEN_FILE).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-
-
-def parse_price_string(raw):
-    if raw is None:
-        return None
-
-    s = raw.replace("\xa0", " ").strip()
-    s = re.sub(r"[^\d,.\s]", "", s)
-    s = re.sub(r"\s+", "", s)
-
-    if not s:
-        return None
-
-    # Mõlemad olemas, nt 23,333.90 või 23.333,90
-    if "," in s and "." in s:
-        if s.rfind(".") > s.rfind(","):
-            # 23,333.90 -> 23333.90
-            s = s.replace(",", "")
-        else:
-            # 23.333,90 -> 23333.90
-            s = s.replace(".", "").replace(",", ".")
-    elif "," in s:
-        # Kui koma järel on 2 kohta, käsitle kümnendikuna
-        if len(s.split(",")[-1]) == 2:
-            s = s.replace(".", "").replace(",", ".")
-        else:
-            s = s.replace(",", "")
-    elif "." in s:
-        # Kui punkti järel ei ole 2 kohta, käsitle tuhandeeraldajana
-        if len(s.split(".")[-1]) != 2:
-            s = s.replace(".", "")
-
-    try:
-        return float(s)
-    except Exception:
-        return None
+def save_json(file, data):
+    with open(file, "w") as f:
+        json.dump(data, f, indent=2)
 
 
 def extract_price(text):
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    if not text:
+        return None
 
-    skip_keywords = (
-        "frakt",
-        "postnord",
-        "dsv",
-        "pallet",
-        "hämta hos oss",
-        "hämta",
-        "onlineköp",
-        "import",
-        "tull",
-        "avgift",
-    )
+    match = re.search(r"([\d\s,.]+)\s*SEK", text)
+    if not match:
+        return None
 
-    # 1) Eelista normaalset hinnarida ja ignoreeri transpordi/readme ridu
-    for line in lines:
-        lower = line.lower()
+    price_str = match.group(1)
+    price_str = price_str.replace(" ", "").replace(",", "")
 
-        if line == "SWE / SE / SEK /":
-            continue
-
-        if "SEK" not in line:
-            continue
-
-        if any(keyword in lower for keyword in skip_keywords):
-            continue
-
-        m = re.search(r"([\d][\d\s.,\xa0]*)\s*SEK\b", line)
-
-        if m:
-            price = parse_price_string(m.group(1))
-            if price is not None:
-                return price
-
-    # 2) Fallback: otsi üle kogu teksti, lubades ka reavahed numbri ja SEK vahel
-    matches = re.finditer(r"([\d][\d\s.,\xa0]*)\s*SEK\b", text, flags=re.MULTILINE)
-
-    for match in matches:
-        price = parse_price_string(match.group(1))
-        if price is not None:
-            return price
-
-    return None
+    try:
+        return float(price_str)
+    except:
+        return None
 
 
-def format_price(price):
-    if price is None:
-        return "hind puudub"
-
-    return f"{price:.2f} SEK"
-
-
-def is_price_allowed(price, max_price):
-    if max_price is None:
-        return True
-
-    if price is None:
-        return True
-
-    return price <= max_price
+def get_driver():
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    return webdriver.Chrome(options=options)
 
 
-def is_significant_price_drop(old_price, new_price, threshold=PRICE_DROP_ALERT_THRESHOLD):
-    if old_price is None or new_price is None:
-        return False
+def run():
+    searches = load_json("searches.json")
+    seen = load_json("seen_parts.json")
 
-    if old_price <= 0:
-        return False
+    driver = get_driver()
 
-    if new_price >= old_price:
-        return False
+    new_items = []
+    cheaper_items = []
+    price_added_items = []
 
-    drop_pct = (old_price - new_price) / old_price
-    return drop_pct >= threshold
+    print(f"Loaded searches: {len(searches)}")
 
+    for search in searches:
+        name = search["name"]
+        url = search["url"]
+        max_price = search.get("max_price")
 
-def price_drop_percent(old_price, new_price):
-    if old_price is None or new_price is None or old_price <= 0:
-        return 0.0
+        print(f"Running search: {name}")
+        print(f"URL: {url}")
+        print(f"Max price: {max_price}")
 
-    return ((old_price - new_price) / old_price) * 100
+        driver.get(url)
+        time.sleep(3)
 
+        links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/ID-']")
+        links = list({l.get_attribute("href") for l in links})
 
-def send_email(search_name, new_items, cheaper_items, price_added_items):
-    if not EMAIL_USER or not EMAIL_PASS:
-        print("Email secrets missing")
-        return
+        print(f"[{name}] Found engines: {len(links)}")
 
-    if not new_items and not cheaper_items and not price_added_items:
-        print("No email sent, no changes")
-        return
+        if name not in seen:
+            seen[name] = {}
 
-    lines = []
-    lines.append(f"Otsing: {search_name}")
-    lines.append("")
+        for i, link in enumerate(links[:MAX_RESULTS]):
+            print(f"[{name}] Checking detail {i+1}/{len(links)}")
 
-    if new_items:
-        lines.append("UUED KUULUTUSED")
-        lines.append("")
+            driver.get(link)
+            time.sleep(1.5)
 
-        for item_search_name, title, price, url in new_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(price)}")
-            lines.append(url)
-            lines.append("")
+            body_text = driver.find_element(By.TAG_NAME, "body").text
+            price = extract_price(body_text)
 
-    if cheaper_items:
-        lines.append("HINNALANGUSED")
-        lines.append("")
-
-        for item_search_name, title, old_price, new_price, drop_pct, url in cheaper_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Vana hind: {format_price(old_price)}")
-            lines.append(f"Uus hind: {format_price(new_price)}")
-            lines.append(f"Langus: -{drop_pct:.1f}%")
-            lines.append(url)
-            lines.append("")
-
-    if price_added_items:
-        lines.append("HIND LISATI HILJEM")
-        lines.append("")
-
-        for item_search_name, title, new_price, url in price_added_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(new_price)}")
-            lines.append(url)
-            lines.append("")
-
-    body = "\n".join(lines)
-
-    msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = (
-        f"engine-watcher: "
-        f"{len(new_items)} new, "
-        f"{len(cheaper_items)} cheaper, "
-        f"{len(price_added_items)} price added"
-    )
-    msg["From"] = EMAIL_USER
-    msg["To"] = EMAIL_USER
-
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(EMAIL_USER, EMAIL_PASS)
-        server.send_message(msg)
-
-    print("Email sent")
-
-
-def main():
-    searches = load_searches()
-
-    print("Loaded searches:", len(searches))
-    for s in searches:
-        print(
-            "-",
-            s["name"],
-            "|",
-            s["site"],
-            "|",
-            s["url"],
-            "| max_price:",
-            s.get("max_price")
-        )
-
-    if os.environ.get("TEST_EMAIL") == "1":
-        send_email(
-            "MULTI",
-            [("TEST", "TEST ENGINE", 9999, "https://test-link")],
-            [],
-            []
-        )
-        print("Test email sent")
-        return
-
-    all_new = []
-    all_cheaper = []
-    all_price_added = []
-
-    old_seen = load_seen()
-    current_seen = {}
-
-    print("Opening Bildelsbasen in browser...")
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-
-        for search in searches:
-            search_name = search["name"]
-            search_site = search["site"]
-            search_url = search["url"]
-            max_price = search.get("max_price")
-
-            if search_site.lower() != "bildelsbasen":
-                print("Skipping unsupported site:", search_site)
+            if price is None:
+                print(f"[{name}] ⚠️ Price not found, skipping: {link}")
                 continue
 
-            print("Running search:", search_name)
-            print("URL:", search_url)
-            print("Max price:", max_price)
+            if max_price and price > max_price:
+                print(f"[{name}] Skipping over max_price: {price} {link}")
+                continue
 
-            old_search_seen = old_seen.get(search_name, {})
-            current_search_data = {}
+            part_id = link.split("ID-")[-1]
 
-            search_page = browser.new_page()
-            search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
-            search_page.wait_for_timeout(8000)
+            old_price = seen[name].get(part_id)
 
-            links = search_page.locator("a")
-            count = links.count()
+            # NEW
+            if part_id not in seen[name]:
+                new_items.append((name, part_id, price, link))
 
-            results = []
-            seen_urls = set()
+            # CHEAPER
+            elif old_price and price < old_price:
+                cheaper_items.append((name, part_id, old_price, price, link))
 
-            for i in range(count):
-                text = links.nth(i).inner_text().strip()
-                href = links.nth(i).get_attribute("href") or ""
+            # PRICE ADDED LATER
+            elif old_price is None and price:
+                price_added_items.append((name, part_id, price, link))
 
-                is_product = (
-                    text.startswith("W")
-                    and "Motor Diesel" in text
-                    and "/Motor/Motor-Diesel/_/ID-" in href
-                )
+            seen[name][part_id] = price
 
-                if is_product:
-                    full_url = "https://www.bildelsbasen.se" + href
+    save_json("seen_parts.json", seen)
 
-                    if full_url not in seen_urls:
-                        seen_urls.add(full_url)
-                        results.append((text, full_url))
+    print(f"New engines: {len(new_items)}")
+    print(f"Cheaper engines: {len(cheaper_items)}")
+    print(f"Price added later: {len(price_added_items)}")
 
-            print(f"[{search_name}] Found engines:", len(results))
+    # EMAIL (simple print for now)
+    if new_items or cheaper_items or price_added_items:
+        print("\n=== EMAIL ===")
 
-            detail_page = browser.new_page()
+        if new_items:
+            print("\nNEW:")
+            for item in new_items:
+                print(item)
 
-            for idx, (title, detail_url) in enumerate(results, start=1):
-                print(f"[{search_name}] Checking detail {idx}/{len(results)}")
+        if cheaper_items:
+            print("\nCHEAPER:")
+            for item in cheaper_items:
+                print(item)
 
-                try:
-                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
-                    detail_page.wait_for_timeout(2500)
+        if price_added_items:
+            print("\nPRICE ADDED:")
+            for item in price_added_items:
+                print(item)
 
-                    body_text = detail_page.locator("body").inner_text()
-                    price = extract_price(body_text)
-
-                    if not is_price_allowed(price, max_price):
-                        print(f"[{search_name}] Skipping over max_price:", price, detail_url)
-                        continue
-
-                    current_search_data[detail_url] = {
-                        "title": title,
-                        "price": price
-                    }
-
-                except Exception as e:
-                    print("Detail page failed:", detail_url)
-                    print(str(e))
-
-                    current_search_data[detail_url] = {
-                        "title": title,
-                        "price": None
-                    }
-
-            detail_page.close()
-            search_page.close()
-
-            merged_search_data = dict(old_search_seen)
-
-            for url, item in current_search_data.items():
-                old_item = old_search_seen.get(url)
-                new_price = item.get("price")
-
-                if old_item is None:
-                    all_new.append((search_name, item["title"], new_price, url))
-                else:
-                    old_price = old_item.get("price")
-
-                    if old_price is None and new_price is not None:
-                        all_price_added.append((search_name, item["title"], new_price, url))
-
-                    elif old_price is not None and new_price is not None and new_price < old_price:
-                        if is_significant_price_drop(old_price, new_price):
-                            drop_pct = price_drop_percent(old_price, new_price)
-                            all_cheaper.append(
-                                (search_name, item["title"], old_price, new_price, drop_pct, url)
-                            )
-
-                # OLULINE:
-                # kui hind jäi sellel jooksul lugemata, aga varem oli olemas,
-                # siis ära kirjuta vana hinda None-ga üle
-                if old_item is not None and item.get("price") is None and old_item.get("price") is not None:
-                    merged_search_data[url] = {
-                        "title": item.get("title") or old_item.get("title"),
-                        "price": old_item.get("price")
-                    }
-                else:
-                    merged_search_data[url] = {
-                        "title": item.get("title"),
-                        "price": item.get("price")
-                    }
-
-            current_seen[search_name] = merged_search_data
-
-        browser.close()
-
-    print("New engines:", len(all_new))
-    print("Cheaper engines:", len(all_cheaper))
-    print("Price added later:", len(all_price_added))
-
-    send_email("MULTI", all_new, all_cheaper, all_price_added)
-    save_seen(current_seen)
+        print("\nEmail sent")
 
 
 if __name__ == "__main__":
-    main()
+    run()
