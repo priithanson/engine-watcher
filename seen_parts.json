@@ -348,7 +348,7 @@
   "651940": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62558203/A-651-010-14-46": {
       "title": "W79816 | Motor Diesel",
-      "price": null
+      "price": 37500.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-55859801/A6510105502": {
       "title": "W42686 | Motor Diesel",
@@ -732,7 +732,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-65384529/36050501": {
       "title": "W76957 | Motor Diesel",
-      "price": 17500.0
+      "price": 15000.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2011_2013/Motor/Motor-Diesel/_/ID-67145316/D5204T2": {
       "title": "W659710 | Motor Diesel",
@@ -862,7 +862,7 @@
   "D5244T1": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-65028067": {
       "title": "W489525 | Motor Diesel",
-      "price": 11667.0
+      "price": 11711.6
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-65074314": {
       "title": "W309923 | Motor Diesel",
@@ -874,7 +874,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67264299/36050978": {
       "title": "W367296 | Motor Diesel",
-      "price": 15554.4
+      "price": 15613.8
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-C30/2007_2010/Motor/Motor-Diesel/_/ID-63688393": {
       "title": "W304913 | Motor Diesel",
@@ -886,19 +886,19 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-66740557/D5244T16": {
       "title": "W597344 | Motor Diesel",
-      "price": 17014.3
+      "price": 17079.4
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67083328/D5244T16": {
       "title": "W673838 | Motor Diesel",
-      "price": 17072.6
+      "price": 17137.9
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67265799/D5244T16": {
       "title": "W683950 | Motor Diesel",
-      "price": 17072.6
+      "price": 17137.9
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-67265879/D5244T16": {
       "title": "W684141 | Motor Diesel",
-      "price": 17092.2
+      "price": 17157.4
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-55609925/36050450": {
       "title": "W1933819 | Motor Diesel",
@@ -914,7 +914,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-65858549/D5244T14": {
       "title": "W664012 | Motor Diesel",
-      "price": 19406.1
+      "price": 19480.2
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-62557694/36050391": {
       "title": "W1130928 | Motor Diesel",
@@ -922,19 +922,19 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2014_2017/Motor/Motor-Diesel/_/ID-67066241/36001936": {
       "title": "W1014492 | Motor Diesel",
-      "price": 19445.0
+      "price": 19519.3
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-66792581/36050498": {
       "title": "W92023 | Motor Diesel",
-      "price": 19415.4
+      "price": 19489.6
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2014_2018/Motor/Motor-Diesel/_/ID-67243291": {
       "title": "W1018193 | Motor Diesel",
-      "price": 19445.0
+      "price": 19519.3
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-65793327/6906273": {
       "title": "W661053 | Motor Diesel",
-      "price": 20961.7
+      "price": 21041.8
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-67096104/36050391": {
       "title": "W2289633 | Motor Diesel",
@@ -950,19 +950,19 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2014_2016/Motor/Motor-Diesel/_/ID-67274006/36001936": {
       "title": "W863719 | Motor Diesel",
-      "price": 20996.6
+      "price": 21077.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-66966731/36050978": {
       "title": "W603934 | Motor Diesel",
-      "price": 21778.4
+      "price": 21861.6
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-66429574/36001936": {
       "title": "W669479 | Motor Diesel",
-      "price": 23256.2
+      "price": 23345.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-65803613/36001936": {
       "title": "W583283 | Motor Diesel",
-      "price": 23333.9
+      "price": 23423.1
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67063335/36001936": {
       "title": "W2921268 | Motor Diesel",
@@ -970,23 +970,23 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67083665/D5244T17": {
       "title": "W676539 | Motor Diesel",
-      "price": 23256.2
+      "price": 23345.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67083808/D5244T17": {
       "title": "W676317 | Motor Diesel",
-      "price": 23256.2
+      "price": 23345.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2014_2018/Motor/Motor-Diesel/_/ID-67218599/D5244T15": {
       "title": "W688674 | Motor Diesel",
-      "price": 23256.2
+      "price": 23345.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67164822/36050504": {
       "title": "W361698 | Motor Diesel",
-      "price": 23333.9
+      "price": 23423.1
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-66794551/36050498": {
       "title": "W89524 | Motor Diesel",
-      "price": 23295.0
+      "price": 23384.1
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-65059755/36050504": {
       "title": "W68610 | Motor Diesel",
@@ -1050,6 +1050,14 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2011_2013/Motor/Motor-Diesel/_/ID-65086305/36050498": {
       "title": "W664670 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-67311141/36001936": {
+      "title": "W397955 | Motor Diesel",
+      "price": 24500.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC90/2007_2014/Motor/Motor-Diesel/_/ID-65698913/36050589": {
+      "title": "W727274 | Motor Diesel",
       "price": null
     }
   },
