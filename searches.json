@@ -17,37 +17,37 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CFC&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 50000
-   },
+    },
     {
       "name": "651950",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651950&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 60000
-   },
+    },
     {
       "name": "G9U",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=G9U&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 25000
-   },
+    },
     {
       "name": "D5204T",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5204T&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 22000
-     },
+    },
     {
       "name": "D5244T1",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5244T1&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 25000
-      },
+    },
     {
       "name": "D5244T2",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D5244T2&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 30000
-     },
+    },
     {
       "name": "36050451 D5244T4 08-08",
       "site": "bildelsbasen",
@@ -65,13 +65,13 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T6&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 70000
-   },
+    },
     {
       "name": "D4204T11",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/OEM/36012524",
       "max_price": 70000
-    ,
+    },
     {
       "name": "D4204T23",
       "site": "bildelsbasen",
