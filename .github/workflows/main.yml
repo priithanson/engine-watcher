@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Setup Chrome (optional, võib jääda)
+      - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
       - name: Install dependencies
@@ -28,12 +28,7 @@ jobs:
           playwright install chromium
 
       - name: Run watcher
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         run: python watcher.py
-
-      - name: Commit seen_parts.json if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add seen_parts.json
-          git diff --cached --quiet || git commit -m "Update seen_parts"
-          git push
