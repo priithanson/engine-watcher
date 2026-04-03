@@ -13,6 +13,8 @@ SEEN_FILE = "seen_parts.json"
 EMAIL_USER = os.environ.get("EMAIL_USER")
 EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
+DEBUG_PRICE_URL_PART = "ID-67329606"
+
 
 def load_searches():
     path = Path(SEARCHES_FILE)
@@ -44,7 +46,7 @@ def load_seen():
     try:
         data = json.loads(text)
         return data if isinstance(data, dict) else {}
-    except:
+    except Exception:
         return {}
 
 
@@ -68,7 +70,7 @@ def extract_price(text):
 
     try:
         return float(normalized)
-    except:
+    except Exception:
         return None
 
 
@@ -102,16 +104,46 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
     lines.append(f"Otsing: {search_name}")
     lines.append("")
 
-    for item_search_name, title, price, url in new_items:
-        lines.append(f"[{item_search_name}] {title}")
-        lines.append(f"Hind: {format_price(price)}")
-        lines.append(url)
+    if new_items:
+        lines.append("UUED KUULUTUSED")
         lines.append("")
+
+        for item_search_name, title, price, url in new_items:
+            lines.append(f"[{item_search_name}] {title}")
+            lines.append(f"Hind: {format_price(price)}")
+            lines.append(url)
+            lines.append("")
+
+    if cheaper_items:
+        lines.append("HINNALANGUSED")
+        lines.append("")
+
+        for item_search_name, title, old_price, new_price, url in cheaper_items:
+            lines.append(f"[{item_search_name}] {title}")
+            lines.append(f"Vana hind: {format_price(old_price)}")
+            lines.append(f"Uus hind: {format_price(new_price)}")
+            lines.append(url)
+            lines.append("")
+
+    if price_added_items:
+        lines.append("HIND LISATI HILJEM")
+        lines.append("")
+
+        for item_search_name, title, new_price, url in price_added_items:
+            lines.append(f"[{item_search_name}] {title}")
+            lines.append(f"Hind: {format_price(new_price)}")
+            lines.append(url)
+            lines.append("")
 
     body = "\n".join(lines)
 
     msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = f"engine-watcher: {len(new_items)} new"
+    msg["Subject"] = (
+        f"engine-watcher: "
+        f"{len(new_items)} new, "
+        f"{len(cheaper_items)} cheaper, "
+        f"{len(price_added_items)} price added"
+    )
     msg["From"] = EMAIL_USER
     msg["To"] = EMAIL_USER
 
@@ -159,18 +191,16 @@ def main():
                 text = links.nth(i).inner_text().strip()
                 href = links.nth(i).get_attribute("href") or ""
 
-                # 🔥 DEBUG
                 if "/ID-" in href:
                     print(f"[{search_name}] LINK DEBUG:", text[:120], "|", href)
 
                 is_product = (
-                    text.startswith("W")
-                    and "Motor Diesel" in text
-                    and "/Motor/Motor-Diesel/_/ID-" in href
+                    "Motor-Diesel" in href
+                    and "/ID-" in href
                 )
 
                 if is_product:
-                    full_url = "https://www.bildelsbasen.se" + href
+                    full_url = "https://www.bildelsbasen.se" + href if href.startswith("/") else href
 
                     if full_url not in seen_urls:
                         seen_urls.add(full_url)
@@ -182,11 +212,24 @@ def main():
 
             for title, detail_url in results:
                 try:
-                    detail_page.goto(detail_url)
-                    detail_page.wait_for_timeout(2000)
+                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
+                    detail_page.wait_for_timeout(2500)
 
-                    body = detail_page.locator("body").inner_text()
-                    price = extract_price(body)
+                    body_text = detail_page.locator("body").inner_text()
+                    price = extract_price(body_text)
+
+                    if DEBUG_PRICE_URL_PART in detail_url:
+                        print("\n================ DEBUG PRICE PAGE ================")
+                        print("DEBUG URL:", detail_url)
+                        print("DEBUG TITLE:", title)
+                        print("DEBUG EXTRACTED PRICE:", price)
+                        print("DEBUG BODY START:")
+                        print(body_text[:3000])
+                        print("DEBUG SEK LINES:")
+                        for line in body_text.splitlines():
+                            if "SEK" in line:
+                                print("SEK LINE:", line.strip())
+                        print("================ END DEBUG PRICE PAGE ================\n")
 
                     if not is_price_allowed(price, max_price):
                         continue
