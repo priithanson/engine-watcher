@@ -52,8 +52,31 @@
       "name": "36050451 D5244T4 08-08",
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/OEM/36050451?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
-      "max_price": 1800
+      "max_price": 18000
+    },
+    {
+      "name": "D420T",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D420T&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
+      "max_price": 70000
+    },
+    {
+      "name": "D4204T6",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T6&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 70000
+   },
+    {
+      "name": "D4204T11",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/OEM/36012524",
+      "max_price": 70000
+    ,
+    {
+      "name": "D4204T23",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T23&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 70000
     }
   ]
 }
-
