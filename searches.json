@@ -95,6 +95,12 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=YD25DDTI&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 55000
+   },
+    {
+      "name": "CRT",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CRT&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
+      "max_price": 55000
     }
   ]
 }
