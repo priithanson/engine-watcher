@@ -57,7 +57,7 @@
     {
       "name": "D420T",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D420T&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D420T&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
       "max_price": 70000
     },
     {
@@ -69,7 +69,7 @@
     {
       "name": "D4204T11",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/OEM/36012524",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T11&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 70000
     },
     {
@@ -77,6 +77,24 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T23&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 70000
+     },
+    {
+      "name": "EE20",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=EE20&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 25000
+   },
+    {
+      "name": "N57D30",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=N57D30&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 55000
+    },
+    {
+      "name": "YD25DDTI",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=YD25DDTI&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 55000
     }
   ]
 }
