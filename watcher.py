@@ -1,18 +1,12 @@
-import json
-import os
+ import json
 import re
-import smtplib
-from email.mime.text import MIMEText
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
 SEARCHES_FILE = "searches.json"
-SEEN_FILE = "seen_parts.json"
 
-EMAIL_USER = os.environ.get("EMAIL_USER")
-EMAIL_PASS = os.environ.get("EMAIL_PASS")
-
+DEBUG_SEARCH_NAME = "R9M"
 DEBUG_PRICE_URL_PART = "ID-67329606"
 
 
@@ -34,29 +28,6 @@ def load_searches():
     return searches
 
 
-def load_seen():
-    path = Path(SEEN_FILE)
-    if not path.exists():
-        return {}
-
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        return {}
-
-    try:
-        data = json.loads(text)
-        return data if isinstance(data, dict) else {}
-    except Exception:
-        return {}
-
-
-def save_seen(data):
-    Path(SEEN_FILE).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-
-
 def extract_price(text):
     if not text:
         return None
@@ -74,189 +45,82 @@ def extract_price(text):
         return None
 
 
-def format_price(price):
-    if price is None:
-        return "hind puudub"
-
-    return f"{price:.2f} SEK"
-
-
-def is_price_allowed(price, max_price):
-    if max_price is None:
-        return True
-
-    if price is None:
-        return True
-
-    return price <= max_price
-
-
-def send_email(search_name, new_items, cheaper_items, price_added_items):
-    if not EMAIL_USER or not EMAIL_PASS:
-        print("Email secrets missing")
-        return
-
-    if not new_items and not cheaper_items and not price_added_items:
-        print("No email sent, no changes")
-        return
-
-    lines = []
-    lines.append(f"Otsing: {search_name}")
-    lines.append("")
-
-    if new_items:
-        lines.append("UUED KUULUTUSED")
-        lines.append("")
-
-        for item_search_name, title, price, url in new_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(price)}")
-            lines.append(url)
-            lines.append("")
-
-    if cheaper_items:
-        lines.append("HINNALANGUSED")
-        lines.append("")
-
-        for item_search_name, title, old_price, new_price, url in cheaper_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Vana hind: {format_price(old_price)}")
-            lines.append(f"Uus hind: {format_price(new_price)}")
-            lines.append(url)
-            lines.append("")
-
-    if price_added_items:
-        lines.append("HIND LISATI HILJEM")
-        lines.append("")
-
-        for item_search_name, title, new_price, url in price_added_items:
-            lines.append(f"[{item_search_name}] {title}")
-            lines.append(f"Hind: {format_price(new_price)}")
-            lines.append(url)
-            lines.append("")
-
-    body = "\n".join(lines)
-
-    msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = (
-        f"engine-watcher: "
-        f"{len(new_items)} new, "
-        f"{len(cheaper_items)} cheaper, "
-        f"{len(price_added_items)} price added"
-    )
-    msg["From"] = EMAIL_USER
-    msg["To"] = EMAIL_USER
-
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(EMAIL_USER, EMAIL_PASS)
-        server.send_message(msg)
-
-    print("Email sent")
-
-
 def main():
     searches = load_searches()
-    old_seen = load_seen()
-    current_seen = {}
 
-    all_new = []
+    debug_search = None
+    for search in searches:
+        if search["name"] == DEBUG_SEARCH_NAME:
+            debug_search = search
+            break
 
-    print("Opening browser...")
+    if debug_search is None:
+        raise ValueError(f"Search '{DEBUG_SEARCH_NAME}' not found in searches.json")
+
+    search_name = debug_search["name"]
+    search_url = debug_search["url"]
+
+    print("DEBUG MODE")
+    print("Search:", search_name)
+    print("URL:", search_url)
+    print("Looking for detail URL containing:", DEBUG_PRICE_URL_PART)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
 
-        for search in searches:
-            search_name = search["name"]
-            search_url = search["url"]
-            max_price = search.get("max_price")
+        page = browser.new_page()
+        page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(5000)
 
-            print("\n======================")
-            print("Running search:", search_name)
+        links = page.locator("a")
+        count = links.count()
 
-            old_search_seen = old_seen.get(search_name, {})
-            current_search_data = {}
+        target_url = None
 
-            page = browser.new_page()
-            page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
-            page.wait_for_timeout(8000)
+        for i in range(count):
+            href = links.nth(i).get_attribute("href") or ""
+            full_url = "https://www.bildelsbasen.se" + href if href.startswith("/") else href
 
-            links = page.locator("a")
-            count = links.count()
+            if DEBUG_PRICE_URL_PART in full_url:
+                target_url = full_url
+                print("FOUND TARGET URL ON SEARCH PAGE:")
+                print(target_url)
+                break
 
-            results = []
-            seen_urls = set()
+        page.close()
 
-            for i in range(count):
-                text = links.nth(i).inner_text().strip()
-                href = links.nth(i).get_attribute("href") or ""
+        if not target_url:
+            print("TARGET URL NOT FOUND ON SEARCH PAGE")
+            browser.close()
+            return
 
-                if "/ID-" in href:
-                    print(f"[{search_name}] LINK DEBUG:", text[:120], "|", href)
+        detail_page = browser.new_page()
+        detail_page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+        detail_page.wait_for_timeout(3000)
 
-                is_product = (
-                    "Motor-Diesel" in href
-                    and "/ID-" in href
-                )
+        body_text = detail_page.locator("body").inner_text()
+        price = extract_price(body_text)
 
-                if is_product:
-                    full_url = "https://www.bildelsbasen.se" + href if href.startswith("/") else href
+        print("\n================ DEBUG PRICE PAGE ================")
+        print("DEBUG URL:", target_url)
+        print("DEBUG EXTRACTED PRICE:", price)
+        print("\nDEBUG BODY START:")
+        print(body_text[:4000])
 
-                    if full_url not in seen_urls:
-                        seen_urls.add(full_url)
-                        results.append((text, full_url))
+        print("\nDEBUG SEK LINES:")
+        found_any = False
+        for line in body_text.splitlines():
+            if "SEK" in line:
+                found_any = True
+                print("SEK LINE:", line.strip())
 
-            print(f"[{search_name}] Found engines:", len(results))
+        if not found_any:
+            print("No SEK lines found in body text")
 
-            detail_page = browser.new_page()
+        print("================ END DEBUG PRICE PAGE ================\n")
 
-            for title, detail_url in results:
-                try:
-                    detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
-                    detail_page.wait_for_timeout(2500)
-
-                    body_text = detail_page.locator("body").inner_text()
-                    price = extract_price(body_text)
-
-                    if DEBUG_PRICE_URL_PART in detail_url:
-                        print("\n================ DEBUG PRICE PAGE ================")
-                        print("DEBUG URL:", detail_url)
-                        print("DEBUG TITLE:", title)
-                        print("DEBUG EXTRACTED PRICE:", price)
-                        print("DEBUG BODY START:")
-                        print(body_text[:3000])
-                        print("DEBUG SEK LINES:")
-                        for line in body_text.splitlines():
-                            if "SEK" in line:
-                                print("SEK LINE:", line.strip())
-                        print("================ END DEBUG PRICE PAGE ================\n")
-
-                    if not is_price_allowed(price, max_price):
-                        continue
-
-                    current_search_data[detail_url] = {
-                        "title": title,
-                        "price": price
-                    }
-
-                except Exception as e:
-                    print("Detail failed:", detail_url)
-                    print(e)
-
-            detail_page.close()
-            page.close()
-
-            for url, item in current_search_data.items():
-                if url not in old_search_seen:
-                    all_new.append((search_name, item["title"], item["price"], url))
-
-            current_seen[search_name] = current_search_data
-
+        detail_page.close()
         browser.close()
-
-    print("\nNew engines:", len(all_new))
-    send_email("MULTI", all_new, [], [])
-    save_seen(current_seen)
 
 
 if __name__ == "__main__":
