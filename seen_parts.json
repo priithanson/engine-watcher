@@ -359,6 +359,18 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-KADJAR/2015_2027/Motor/Motor-Diesel/_/ID-67333164": {
       "title": "W1145166 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67303542/95520989": {
+      "title": "W1077840 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67325050/95523622": {
+      "title": "W878380 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-VIVARO/2015_2019/Motor/Motor-Diesel/_/ID-67274661/95522926": {
+      "title": "W1453034 | Motor Diesel",
+      "price": null
     }
   },
   "651940": {
@@ -379,8 +391,8 @@
       "price": 39990.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63157622/A6510100846": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2012)"
+      "title": "W1249161 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-50061928/A6510105502": {
       "title": "W39032 | Motor Diesel",
@@ -399,12 +411,12 @@
       "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-59540310/A6510105502": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2012)"
+      "title": "W49161 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-60335116/A6510105502": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2012)"
+      "title": "W43302 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-62950247": {
       "price": null,
@@ -415,8 +427,8 @@
       "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2014)"
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63003946/A6510105502": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2014)"
+      "title": "W56587 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-63196045/A6510105502": {
       "title": "W57205 | Motor Diesel",
@@ -435,8 +447,8 @@
       "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-65076937/A-651-010-55-02": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes V-Class Vito/Viano (2013)"
+      "title": "W60947 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&VIANO-%28W639%29/2004_2014/Motor/Motor-Diesel/_/ID-60647490/A6510105502": {
       "title": "W53010 | Motor Diesel",
@@ -547,8 +559,8 @@
       "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-SPRINTER-%28W907&910%29/2019_2027/Motor/Motor-Diesel/_/ID-48719086/A6510104919": {
-      "price": null,
-      "title": "Motor Diesel - Mercedes Sprinter (2022)"
+      "title": "W3664 | Motor Diesel",
+      "price": null
     }
   },
   "G9U": {
@@ -581,8 +593,8 @@
       "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-MASTER-II/2004_2010/Motor/Motor-Diesel/_/ID-43272972/7701479071": {
-      "price": null,
-      "title": "Motor Diesel - Renault Master (2010)"
+      "title": "W1297 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-MOVANO-A/1999_2010/Motor/Motor-Diesel/_/ID-43369897/93190110": {
       "price": null,
@@ -713,16 +725,16 @@
       "title": "Motor Diesel - Opel Movano (2010)"
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-MASTER-II/2004_2010/Motor/Motor-Diesel/_/ID-43369926/7701479074": {
-      "price": null,
-      "title": "Motor Diesel - Renault Master (2010)"
+      "title": "W2075 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-MOVANO-A/1999_2010/Motor/Motor-Diesel/_/ID-43370130/93179358": {
       "title": "W2095 | Motor Diesel",
       "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Opel/OPEL-MOVANO-A/1999_2010/Motor/Motor-Diesel/_/ID-49192592/93169297": {
-      "price": null,
-      "title": "Motor Diesel - Opel Movano (2010)"
+      "title": "W3711 | Motor Diesel",
+      "price": null
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-MASTER-II/2004_2010/Motor/Motor-Diesel/_/ID-49195318/7701475326": {
       "title": "W3715 | Motor Diesel",
@@ -1115,6 +1127,78 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2014_2016/Motor/Motor-Diesel/_/ID-65681066/36050684": {
       "title": "W486228 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67345338": {
+      "title": "W317107 | Motor Diesel",
+      "price": 20000.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2014_2018/Motor/Motor-Diesel/_/ID-67096362/36002865": {
+      "title": "W1615416 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-63182790/36050504": {
+      "title": "W474789 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2014_2016/Motor/Motor-Diesel/_/ID-67197769/36001990": {
+      "title": "W679487 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67105049/36050498": {
+      "title": "W2920893 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67336419/36050498": {
+      "title": "W1258253 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-S80/2007_2013/Motor/Motor-Diesel/_/ID-67036916/36050504": {
+      "title": "W2289173 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67030577/36050504": {
+      "title": "W2287884 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-66979350/36050499": {
+      "title": "W2915210 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-63413180/36050498": {
+      "title": "W1409379 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-65739528/36050499": {
+      "title": "W198897 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-63411482/36050499": {
+      "title": "W1254542 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-65883060/36050499": {
+      "title": "W1783677 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67301713/36010184": {
+      "title": "W617202 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-66941723/36050504": {
+      "title": "W490053 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-64644245/36050771": {
+      "title": "W480375 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2014_2017/Motor/Motor-Diesel/_/ID-66993999/36050771": {
+      "title": "W490553 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-43306381/6906273": {
+      "title": "W1476 | Motor Diesel",
+      "price": null
     }
   },
   "D5244T2": {
@@ -1238,6 +1322,30 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-65480545/36050451": {
       "title": "W140048 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-S80/2007_2013/Motor/Motor-Diesel/_/ID-66428396/36050451": {
+      "title": "W1784203 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-S80/2007_2013/Motor/Motor-Diesel/_/ID-65757077/6906014": {
+      "title": "W370735 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67158615/36050451": {
+      "title": "W830976 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-66798198/36050451": {
+      "title": "W85819 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2009_2013/Motor/Motor-Diesel/_/ID-67279138/36050451": {
+      "title": "W157166 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-65384498/36050451": {
+      "title": "W990794 | Motor Diesel",
       "price": null
     }
   },
@@ -1484,6 +1592,82 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SJ/2013_2018/Motor/Motor-Diesel/_/ID-61733483/10100BW700": {
       "title": "W1023533 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-67345741/10100BV460": {
+      "title": "W14303 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-LEGACY/2010_2014/Motor/Motor-Diesel/_/ID-62413321/10100BU900": {
+      "title": "W63822 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-LEGACY/2010_2014/Motor/Motor-Diesel/_/ID-65451595/10100BT370": {
+      "title": "W2616760 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SH/2008_2013/Motor/Motor-Diesel/_/ID-64570399/10100BU880": {
+      "title": "W655591 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-67252568/10100BT370": {
+      "title": "W695388 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-63017127/10100BU900": {
+      "title": "W294841 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-66978647/10100BW700": {
+      "title": "W2903211 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-64948365/10100BU550": {
+      "title": "W2605372 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-LEGACY/2010_2014/Motor/Motor-Diesel/_/ID-65554647": {
+      "title": "W873367 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-65642446": {
+      "title": "W874413 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-LEGACY/2010_2014/Motor/Motor-Diesel/_/ID-67331429/10100BU900": {
+      "title": "W68894 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SJ/2013_2018/Motor/Motor-Diesel/_/ID-66888549/10100BW700": {
+      "title": "W689298 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-67093923/10100BU900": {
+      "title": "W676096 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SH/2008_2013/Motor/Motor-Diesel/_/ID-57823031/10100BT820": {
+      "title": "W268341 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-60594574/10100BW700": {
+      "title": "W725842 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SJ/2013_2018/Motor/Motor-Diesel/_/ID-67089259/10100BW700": {
+      "title": "W867340 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-64817169/10100BW700": {
+      "title": "W150832 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-63168419/10100BW700": {
+      "title": "W1567005 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-XV/2012_2017/Motor/Motor-Diesel/_/ID-66857536/10100BU550": {
+      "title": "W10766 | Motor Diesel",
+      "price": null
     }
   },
   "N57D30": {
@@ -1530,6 +1714,46 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-X5-F15/2013_2018/Motor/Motor-Diesel/_/ID-67259933/N57D30B": {
       "title": "W680615 | Motor Diesel",
       "price": 50701.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-3-F30&F31&F80/2012_2019/Motor/Motor-Diesel/_/ID-67179674/11002349035": {
+      "title": "W731076 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-4-F32&F33&F82&F83/2013_2020/Motor/Motor-Diesel/_/ID-64951154/11002349036": {
+      "title": "W2860655 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-7-F01&F02&F03&F04/2009_2015/Motor/Motor-Diesel/_/ID-66416683/11002207812": {
+      "title": "W372947 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-X6-E71&E72/2008_2014/Motor/Motor-Diesel/_/ID-43322488/11002180690": {
+      "title": "W1705 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-5-F10&F11&F18/2009_2017/Motor/Motor-Diesel/_/ID-43322502/11002239382": {
+      "title": "W1708 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-6-F12&F13/2010_2018/Motor/Motor-Diesel/_/ID-43322507/11002239384": {
+      "title": "W1713 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-X5-F15/2013_2018/Motor/Motor-Diesel/_/ID-43322561/11002289219": {
+      "title": "W1725 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-3-F30&F31&F80/2012_2019/Motor/Motor-Diesel/_/ID-43322598/11005A0E535": {
+      "title": "W1731 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-5-F10&F11&F18/2009_2017/Motor/Motor-Diesel/_/ID-49251691/11002210421": {
+      "title": "W3785 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-X5-E70/2007_2013/Motor/Motor-Diesel/_/ID-49251883/11002180688": {
+      "title": "W3787 | Motor Diesel",
+      "price": null
     }
   },
   "YD25DDTI": {
@@ -1572,6 +1796,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NAVARA/1998_2005/Motor/Motor-Diesel/_/ID-67057065/10102VK4B0": {
       "title": "W121054 | Motor Diesel",
       "price": 25350.5
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NAVARA/1998_2005/Motor/Motor-Diesel/_/ID-67345076": {
+      "title": "W89893 | Motor Diesel",
+      "price": 17000.0
     }
   },
   "CRT": {
