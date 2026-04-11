@@ -498,7 +498,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67310134/03L100092A": {
       "title": "W617415 | Motor Diesel",
-      "price": 25611.3
+      "price": 25538.9
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67329242/CFCA": {
       "title": "W104850 | Motor Diesel",
@@ -961,12 +961,16 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67358137/36050500": {
       "title": "W645942 | Motor Diesel",
       "price": 21250.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2011_2013/Motor/Motor-Diesel/_/ID-65448942/36050624": {
+      "title": "W874756 | Motor Diesel",
+      "price": null
     }
   },
   "D5244T1": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-65028067": {
       "title": "W489525 | Motor Diesel",
-      "price": 11730.4
+      "price": 11697.2
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V50/2008_2012/Motor/Motor-Diesel/_/ID-65074314": {
       "title": "W309923 | Motor Diesel",
@@ -1276,7 +1280,7 @@
   "D5244T2": {
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-S60/2001_2004/Motor/Motor-Diesel/_/ID-66810660/8251492": {
       "title": "W72103 | Motor Diesel",
-      "price": 5855.0
+      "price": 5838.5
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2014_2018/Motor/Motor-Diesel/_/ID-66792585/36010151": {
       "title": "W92017 | Motor Diesel",
