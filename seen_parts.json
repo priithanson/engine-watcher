@@ -544,7 +544,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67275322": {
       "title": "W868047 | Motor Diesel",
-      "price": 39101.3
+      "price": 38990.7
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-46607305": {
       "title": "W3468 | Motor Diesel",
@@ -965,6 +965,14 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2011_2013/Motor/Motor-Diesel/_/ID-65448942/36050624": {
       "title": "W874756 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-S60/2011_2013/Motor/Motor-Diesel/_/ID-67450572/36050500": {
+      "title": "W2277172 | Motor Diesel",
+      "price": 19250.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V40/2012_2019/Motor/Motor-Diesel/_/ID-32293976/36050626": {
+      "title": "W1338402 | Motor Diesel",
+      "price": null
     }
   },
   "D5244T1": {
@@ -1275,6 +1283,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2014_2017/Motor/Motor-Diesel/_/ID-67354665/36050684": {
       "title": "W493320 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-67284439/36050498": {
+      "title": "W785083 | Motor Diesel",
+      "price": null
     }
   },
   "D5244T2": {
@@ -1337,6 +1349,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC60/2014_2017/Motor/Motor-Diesel/_/ID-67417028": {
       "title": "W1145790 | Motor Diesel",
       "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2014_2016/Motor/Motor-Diesel/_/ID-67462094": {
+      "title": "W1021924 | Motor Diesel",
+      "price": 25343.9
     }
   },
   "36050451 D5244T4 08-08": {
@@ -1910,6 +1926,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-7-F01&F02&F03&F04/2009_2015/Motor/Motor-Diesel/_/ID-67432663": {
       "title": "W1021718 | Motor Diesel",
       "price": 23394.4
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/BMW/BMW-7-F01&F02&F03&F04/2009_2015/Motor/Motor-Diesel/_/ID-67358126/11-00-2-157-612": {
+      "title": "W142751 | Motor Diesel",
+      "price": null
     }
   },
   "YD25DDTI": {
