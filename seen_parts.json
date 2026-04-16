@@ -379,6 +379,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-67481315": {
       "title": "W156914 | Motor Diesel",
       "price": 35125.9
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-67603615/8201721362": {
+      "title": "W1621323 | Motor Diesel",
+      "price": 40000.0
     }
   },
   "651940": {
@@ -486,7 +490,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67259659/03L-100-092-A": {
       "title": "W1018535 | Motor Diesel",
-      "price": 34125.7
+      "price": 34150.2
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/VW/VW-TRANSP&CARAVELLE-T5/2004_2015/Motor/Motor-Diesel/_/ID-67264849/03L100092A": {
       "title": "W388304 | Motor Diesel",
@@ -572,6 +576,10 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67462985/A6510103026": {
       "title": "W1259502 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Mercedes/MB-VITO&V_KLASS-%28W640,W447,W448%29/2014_2027/Motor/Motor-Diesel/_/ID-67605539/A6510103226": {
+      "title": "W1621333 | Motor Diesel",
       "price": null
     }
   },
@@ -1864,6 +1872,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-FORESTER-SH/2008_2013/Motor/Motor-Diesel/_/ID-67484964/10100BT410": {
       "title": "W391106 | Motor Diesel",
       "price": 9753.3
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Subaru/SUBARU-OUTBACK/2010_2015/Motor/Motor-Diesel/_/ID-67609377/10100BT370": {
+      "title": "W673997 | Motor Diesel",
+      "price": 25000.0
     }
   },
   "N57D30": {
@@ -2049,6 +2061,10 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Audi/AUDI-A6-ALLROAD-4G/2012_2018/Motor/Motor-Diesel/_/ID-67423071": {
       "title": "W875547 | Motor Diesel",
+      "price": null
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Audi/AUDI-A6-ALLROAD-4G/2012_2018/Motor/Motor-Diesel/_/ID-67607220/059100036B": {
+      "title": "W376236 | Motor Diesel",
       "price": null
     }
   }
