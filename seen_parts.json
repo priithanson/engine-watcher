@@ -22,7 +22,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-SCENIC-III-&GRAND-SCENIC/2009_2016/Motor/Motor-Diesel/_/ID-66896762/8201704981": {
       "title": "W383206 | Motor Diesel",
-      "price": 16000.0
+      "price": 20000.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI%2B2/2010_2014/Motor/Motor-Diesel/_/ID-65094190/1010200Q5J": {
       "title": "W704599 | Motor Diesel",
@@ -383,6 +383,14 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Renault/RENAULT-TRAFIC&E_TECH/2015_2027/Motor/Motor-Diesel/_/ID-67603615/8201721362": {
       "title": "W1621323 | Motor Diesel",
       "price": 40000.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-67623117/1010200Q5J": {
+      "title": "W669275 | Motor Diesel",
+      "price": 24000.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-QASHQAI/2010_2014/Motor/Motor-Diesel/_/ID-67623624/1010200Q5J": {
+      "title": "W877545 | Motor Diesel",
+      "price": null
     }
   },
   "651940": {
@@ -1331,6 +1339,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67605953/36050504": {
       "title": "W372008 | Motor Diesel",
       "price": 21250.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67625634/36050504": {
+      "title": "W2926854 | Motor Diesel",
+      "price": 17750.0
     }
   },
   "D5244T2": {
@@ -1397,6 +1409,10 @@
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2014_2016/Motor/Motor-Diesel/_/ID-67462094": {
       "title": "W1021924 | Motor Diesel",
       "price": 25495.0
+    },
+    "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V60/2014_2018/Motor/Motor-Diesel/_/ID-67621954/D5244T20": {
+      "title": "W128978 | Motor Diesel",
+      "price": 25887.2
     }
   },
   "36050451 D5244T4 08-08": {
@@ -1446,7 +1462,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-XC70/2008_2013/Motor/Motor-Diesel/_/ID-66550143/36050451": {
       "title": "W381550 | Motor Diesel",
-      "price": 14400.0
+      "price": 18000.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Volvo/VOLVO-V70/2008_2013/Motor/Motor-Diesel/_/ID-67170218/36050451": {
       "title": "W376382 | Motor Diesel",
@@ -2047,7 +2063,7 @@
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NAVARA/1998_2005/Motor/Motor-Diesel/_/ID-66732892/10102EB30A": {
       "title": "W382725 | Motor Diesel",
-      "price": 24000.0
+      "price": 30000.0
     },
     "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s1/Nissan/NISSAN-NAVARA/2005_2016/Motor/Motor-Diesel/_/ID-65333411/101025X00A": {
       "title": "W361512 | Motor Diesel",
