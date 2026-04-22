@@ -137,6 +137,30 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/OEM/03L%2520100%2520090%2520J?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 1400
+  },
+    {
+      "name": "H5F",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=H5F&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 2700
+    },
+    {
+      "name": "Hra2",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/OEM/03L%2520100%2520090%2520J?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 27000
+    },
+    {
+      "name": "H5H",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=H5H&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 3500
+    },
+    {
+      "name": "HR13",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=HR13&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 3500
     }
   ]
 }
