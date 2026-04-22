@@ -101,6 +101,42 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CRT&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
       "max_price": 55000
+     },
+    {
+      "name": "651940",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651940&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 30000
+     },
+    {
+      "name": "PHEV",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=PHEV&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 30000
+    },
+    {
+      "name": "CDU",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CDU&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 2500
+   },
+    {
+      "name": "CUV",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CUV&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 2500
+   },
+    {
+      "name": "CRL",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CRL&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 2500
+   },
+    {
+      "name": "CFF",
+      "site": "bildelsbasen",
+      "url": "https://www.bildelsbasen.se/sv-se/OEM/03L%2520100%2520090%2520J?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "max_price": 1400
     }
   ]
 }
