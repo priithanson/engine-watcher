@@ -15,7 +15,7 @@
     {
       "name": "CFC",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CFC&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CFC&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 50000
     },
     {
@@ -63,7 +63,7 @@
     {
       "name": "D4204T6",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T6&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T6&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 70000
     },
     {
@@ -75,7 +75,7 @@
     {
       "name": "D4204T23",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T23&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=D4204T23&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 70000
      },
     {
@@ -93,7 +93,7 @@
     {
       "name": "YD25DDTI",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=YD25DDTI&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=YD25DDTI&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 55000
    },
     {
@@ -101,12 +101,6 @@
       "site": "bildelsbasen",
       "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=CRT&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=desc",
       "max_price": 55000
-     },
-    {
-      "name": "651940",
-      "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Diesel/Alla?query=651940&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
-      "max_price": 30000
      },
     {
       "name": "PHEV",
@@ -147,7 +141,7 @@
     {
       "name": "Hra2",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/OEM/03L%2520100%2520090%2520J?limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=HRA2&limit=100&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 27000
     },
     {
@@ -159,7 +153,7 @@
     {
       "name": "HR13",
       "site": "bildelsbasen",
-      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=HR13&limit=10&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
+      "url": "https://www.bildelsbasen.se/sv-se/pb/S%C3%B6k/Bildelar/s6/Motor/Motor-Bensin/Alla?query=HR13&limit=100&page=0&sort_column=part_price_sort_sek&sort_direction=asc",
       "max_price": 3500
     }
   ]
