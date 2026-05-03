@@ -70,10 +70,8 @@ def parse_price_string(raw):
 
     if "," in s and "." in s:
         if s.rfind(".") > s.rfind(","):
-            # 23,000.00 -> 23000.00
             s = s.replace(",", "")
         else:
-            # 23.000,00 -> 23000.00
             s = s.replace(".", "").replace(",", ".")
     elif "," in s:
         if len(s.split(",")[-1]) == 2:
@@ -168,11 +166,24 @@ def price_drop_percent(old_price, new_price):
     return ((old_price - new_price) / old_price) * 100
 
 
-def send_email(search_name, new_items, cheaper_items, price_added_items):
+def send_simple_email(subject, body):
     if not EMAIL_USER or not EMAIL_PASS:
         print("Email secrets missing")
         return
 
+    msg = MIMEText(body, _charset="utf-8")
+    msg["Subject"] = subject
+    msg["From"] = EMAIL_USER
+    msg["To"] = EMAIL_USER
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(EMAIL_USER, EMAIL_PASS)
+        server.send_message(msg)
+
+    print("Email sent:", subject)
+
+
+def send_email(search_name, new_items, cheaper_items, price_added_items):
     if not new_items and not cheaper_items and not price_added_items:
         print("No email sent, no changes")
         return
@@ -215,21 +226,76 @@ def send_email(search_name, new_items, cheaper_items, price_added_items):
 
     body = "\n".join(lines)
 
-    msg = MIMEText(body, _charset="utf-8")
-    msg["Subject"] = (
+    subject = (
         f"engine-watcher: "
         f"{len(new_items)} new, "
         f"{len(cheaper_items)} cheaper, "
         f"{len(price_added_items)} price added"
     )
-    msg["From"] = EMAIL_USER
-    msg["To"] = EMAIL_USER
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(EMAIL_USER, EMAIL_PASS)
-        server.send_message(msg)
+    send_simple_email(subject, body)
 
-    print("Email sent")
+
+def send_captcha_email(captcha_events):
+    if not captcha_events:
+        return
+
+    lines = []
+    lines.append("Bildelsbasen küsis CAPTCHA / robotikontrolli.")
+    lines.append("")
+    lines.append("Watcher ei saanud tulemusi lugeda.")
+    lines.append("See EI tähenda, et mootoreid oli 0.")
+    lines.append("")
+    lines.append("Ava Bildelsbasen brauseris ja lahenda kontroll käsitsi.")
+    lines.append("")
+    lines.append("Mõjutatud otsingud:")
+    lines.append("")
+
+    for event in captcha_events:
+        lines.append(f"Otsing: {event['search_name']}")
+        lines.append(f"Otsingu URL: {event['search_url']}")
+        lines.append(f"Avanenud URL: {event['page_url']}")
+        lines.append("")
+
+    body = "\n".join(lines)
+
+    send_simple_email(
+        f"engine-watcher: CAPTCHA detected ({len(captcha_events)} search)",
+        body
+    )
+
+
+def is_captcha_page(page):
+    try:
+        current_url = page.url.lower()
+
+        if "captcha" in current_url:
+            return True
+
+        body_text = page.locator("body").inner_text(timeout=5000).lower()
+
+        captcha_markers = (
+            "är du en person eller en robot",
+            "robot",
+            "captcha",
+            "returnurl",
+        )
+
+        return any(marker in body_text for marker in captcha_markers)
+
+    except Exception:
+        return False
+
+
+def canonicalize_detail_url(url):
+    if not url:
+        return url
+
+    # eemaldame query stringi ja fragmenti
+    url = url.split("#")[0]
+    url = url.split("?")[0]
+
+    return url.rstrip("/")
 
 
 def main():
@@ -251,9 +317,13 @@ def main():
     all_new = []
     all_cheaper = []
     all_price_added = []
+    captcha_events = []
 
     old_seen = load_seen()
-    current_seen = {}
+
+    # Väga oluline: alustame vana mäluga.
+    # Kui mingi search jääb CAPTCHA taha, siis me ei kustuta selle vana mälu ära.
+    current_seen = dict(old_seen)
 
     print("Opening Bildelsbasen in browser...")
 
@@ -278,8 +348,29 @@ def main():
             current_search_data = {}
 
             search_page = browser.new_page()
-            search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
-            search_page.wait_for_timeout(8000)
+
+            try:
+                search_page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+                search_page.wait_for_timeout(8000)
+
+                if is_captcha_page(search_page):
+                    print(f"[{search_name}] CAPTCHA detected, skipping this search")
+                    print(f"[{search_name}] Captcha/page URL:", search_page.url)
+
+                    captcha_events.append({
+                        "search_name": search_name,
+                        "search_url": search_url,
+                        "page_url": search_page.url,
+                    })
+
+                    search_page.close()
+                    continue
+
+            except Exception as e:
+                print(f"[{search_name}] Search page failed:", search_url)
+                print(str(e))
+                search_page.close()
+                continue
 
             links = search_page.locator("a")
             count = links.count()
@@ -288,16 +379,28 @@ def main():
             seen_urls = set()
 
             for i in range(count):
-                text = links.nth(i).inner_text().strip()
-                href = links.nth(i).get_attribute("href") or ""
+                try:
+                    text = links.nth(i).inner_text().strip()
+                    href = links.nth(i).get_attribute("href") or ""
+                except Exception:
+                    continue
 
+                # Parandus:
+                # varem otsis ainult Motor-Diesel.
+                # nüüd sobivad nii Motor-Diesel kui Motor-Bensin.
                 is_product = (
-                    "Motor-Diesel" in href
-                    and "/ID-" in href
+                    "/ID-" in href
+                    and "/Bildelar/" in href
+                    and "/Motor/" in href
+                    and (
+                        "Motor-Diesel" in href
+                        or "Motor-Bensin" in href
+                    )
                 )
 
                 if is_product:
                     full_url = "https://www.bildelsbasen.se" + href if href.startswith("/") else href
+                    full_url = canonicalize_detail_url(full_url)
 
                     if full_url not in seen_urls:
                         seen_urls.add(full_url)
@@ -314,6 +417,19 @@ def main():
                     detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
                     detail_page.wait_for_timeout(2500)
 
+                    if is_captcha_page(detail_page):
+                        print(f"[{search_name}] CAPTCHA detected on detail page")
+                        print(f"[{search_name}] Detail URL:", detail_url)
+                        print(f"[{search_name}] Captcha/page URL:", detail_page.url)
+
+                        captcha_events.append({
+                            "search_name": search_name,
+                            "search_url": detail_url,
+                            "page_url": detail_page.url,
+                        })
+
+                        continue
+
                     body_text = detail_page.locator("body").inner_text()
                     price = extract_price(body_text)
 
@@ -322,7 +438,7 @@ def main():
                         continue
 
                     current_search_data[detail_url] = {
-                        "title": title if title else "Motor Diesel",
+                        "title": title if title else "Motor",
                         "price": price
                     }
 
@@ -331,7 +447,7 @@ def main():
                     print(str(e))
 
                     current_search_data[detail_url] = {
-                        "title": title if title else "Motor Diesel",
+                        "title": title if title else "Motor",
                         "price": None
                     }
 
@@ -378,8 +494,11 @@ def main():
     print("New engines:", len(all_new))
     print("Cheaper engines:", len(all_cheaper))
     print("Price added later:", len(all_price_added))
+    print("Captcha events:", len(captcha_events))
 
     send_email("MULTI", all_new, all_cheaper, all_price_added)
+    send_captcha_email(captcha_events)
+
     save_seen(current_seen)
 
 
