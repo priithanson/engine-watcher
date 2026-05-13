@@ -32,9 +32,6 @@ jobs:
           pip install playwright
           playwright install chromium
 
-      - name: Show public IP
-        run: curl -s https://ifconfig.me && echo
-
       - name: Run watcher
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
